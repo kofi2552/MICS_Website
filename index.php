@@ -255,10 +255,7 @@ include ("header.php");
                                         >
                                         </p>
                                     </video>
-                                    <!-- <a class="video-popup" href="https://www.youtube.com/watch?v=rdlNmqMmPJw" style="text-decoration: none;">
-                                        <i class="zmdi zmdi-play"></i>
-                                    </a> -->
-                                <!-- </div> -->
+                                 
                             </div>
                         </div> 
                     </div>
