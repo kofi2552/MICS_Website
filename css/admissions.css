@@ -1,0 +1,63 @@
+.enroll-now .form-admission {
+  margin: 0 auto !important;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.enroll-now .form-admission .left-content img {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.enroll-now .form-admission .left-content img {
+  border-radius: 5px;
+}
+
+.enroll-now .form-admission .intro {
+  font-size: 26px !important;
+}
+
+.enroll-now .form-admission .right-content p {
+  font-size: 22px !important;
+  margin: 12px 0;
+}
+
+.enroll-now .form-admission .starting {
+  font-size: 16px !important;
+  margin: 7px 0;
+}
+
+@media screen and (max-width: 769px) {
+  .enroll-now .form-admission {
+    width: 100%;
+    margin: 0 auto !important;
+    flex-direction: column !important;
+    gap: 20px;
+  }
+  .enroll-now .form-admission .left-content {
+    /*    display:flex;*/
+    /*justify-content: center;*/
+    padding: 20px;
+  }
+  .enroll-now .form-admission .left-content img {
+    width: 90%;
+  }
+  .enroll-now .form-admission .intro {
+    font-size: 20px !important;
+  }
+  .enroll-now .form-admission .right-content p {
+    font-size: 18px !important;
+    line-height: 24px;
+  }
+
+  .enroll-now .form-admission .right-card {
+    padding: 20px;
+  }
+
+  .enroll-now .form-admission .starting {
+    font-size: 13px !important;
+  }
+}

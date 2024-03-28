@@ -1,0 +1,104 @@
+.upform-bdy {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            /*height: 100vh;*/
+            padding: 20px;
+            /*background-color: #fafafa;*/
+        }
+        
+.upform {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+        
+        .upform-bdy h1 {
+            font-size: 34px;
+            padding: 10px 0;
+        }
+        
+        .upform p {
+            font-size: 16px;
+            padding: 20px 0 !important;
+            margin: 0 !important;
+            color: green !important;
+        }
+        
+        .upform span {
+            font-size: 10px;
+        }
+        
+        .upform h1 {
+            font-size: 34px;
+            padding-top: 20px;
+        }
+        
+        .upform-bdy p {
+            font-size: 16px;
+            padding: 10px 0;
+            color: red;
+            margin-bottom:20px;
+        }
+        
+        #uploadMessages {
+            font-size: 16px;
+            padding: 10px;
+            color: green;
+            margin-bottom:20px;
+            background: #fff;
+        }
+
+        form {
+            background-color: #d4edda; /* Green background color */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #155724; /* Dark green text color */
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da; /* Gray border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745; /* Dark green submit button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        
+        #uploadMessage #uploadMessages {
+            margin-bottom: 0 !important;
+            background: transparent !important;
+        }
