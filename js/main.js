@@ -25,6 +25,8 @@
     
     /* last  2 li child add class */
     $('ul.menu>li').slice(-2).addClass('last-elements');
+
+
 /*------------------------------------
 	Owl Carousel
 --------------------------------------*/
@@ -33,7 +35,7 @@
         nav:true,
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
-        smartSpeed: 2500,
+        smartSpeed: 500,
         navText:['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
         responsive:{
             0:{
@@ -47,6 +49,8 @@
             }
         }
     });
+
+
 
     $('.partner-owl').owlCarousel({
         loop:true,
@@ -65,6 +69,25 @@
         }
     });  
 
+
+    $('.nblog-owl').owlCarousel({
+        loop:true,
+        nav:true,
+        navText:['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+        responsive:{
+            0:{
+                items:1
+            },
+            768:{
+                items:1
+            },
+            1000:{
+                items:3
+            }
+        }
+    });
+
+
     $('.testimonial-owl').owlCarousel({
         loop:true,
         nav:true,
@@ -81,6 +104,7 @@
             }
         }
     });
+
 /*------------------------------------
 	Video Player
 --------------------------------------*/
@@ -128,3 +152,10 @@ $(".notice-left").niceScroll({
         });
 
 })(jQuery);	
+
+
+
+/*------------------------------------
+	scrollintoview
+--------------------------------------*/
+

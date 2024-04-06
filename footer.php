@@ -5,19 +5,19 @@
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="single-widget pr-60">
                                 <div class="footer-logo pb-25">
-                                    <a href="index.html"><img src="img/logo/footer-logo.png" alt="mics logo"></a>
+                                    <a href="index.html"><img src="img/mics_footer-logo.svg" alt="MICS logo"></a>
                                 </div>
-                                <p>MICS aspires to be a globally renowned centre for innovative international education. To achieve this, the school assures a welcoming, supportive and safe environment, the school fosters love for excellent learning that encourages the development of skills, knowledge, creativity, international-mindedness and multiculturalism.</p>
+                                <p>MICS aspires to be a globally renowned centre for innovative international education through creativity, international-mindedness and multiculturalism.</p>
                                 <div class="footer-social">
                                     <ul>
-                                        <li><a href="https://www.facebook.com/micsghana" style="text-decoration: none;"><i class="zmdi zmdi-facebook"></i></a></li>
+                                        <li><a href="https://www.facebook.com/micsghana" style="text-decoration: none; color: #00BB8D;"><i class="fa-brands fa-facebook"></i></a></li>
                                         
-                                        <li><a href="#" style="text-decoration: none;"><i class="zmdi zmdi-instagram"></i></a></li>
+                                        <li><a href="https://www.instagram.com/micsghana" style="text-decoration: none; color: #00BB8D;"><i class="fa-brands fa-instagram"></i></a></li>
                                     </ul>    
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-md-2 col-sm-6 col-xs-12">
                             <div class="single-widget">
                                 <h3>quick Links</h3>
                                 <ul>
@@ -30,7 +30,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-2 col-sm-6 col-xs-12">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="single-widget">
                                 <h3>Quick Links</h3>
                                 <ul>
@@ -55,17 +55,17 @@
             </div> 
               
 
-                           <div align="center"><img src="img/footer/iblogo.jpg" width="150" height="40" alt="ibdp" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/footer/cambridge.jpg" width="150" height="40" alt="cie" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/footer/cislogo.png" width="150" height="40" alt="cis" /></div>
+    <div align="center"><img src="img/footer/iblogo.jpg" width="150" height="40" alt="ibdp" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/footer/cambridge.jpg" width="150" height="40" alt="cie" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/footer/cislogo.png" width="150" height="40" alt="cis" /></div>
                   <br />
-<br />
-<br />
+                    <br />
+                    <br />
 
               
             <div class="footer-bottom text-center">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <p>Copyright © <a href="#" target="_blank" style="text-decoration: none;">MICS</a> 2024 Morgan International Community School.</p>
+                            <p>Copyright © <a href="#" target="_blank" style="text-decoration: none;">MICS</a> 2024 | Morgan International Community School</p>
                         </div> 
                     </div>
                 </div>    
