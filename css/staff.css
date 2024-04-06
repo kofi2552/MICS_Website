@@ -1,0 +1,15 @@
+@media screen and (max-width: 1400px){
+    .about-area .department {
+    flex-direction: column !important;
+    }
+
+    .about-area .hmdp {
+    width: 80% !important;
+    margin: 0 auto !important;
+    }
+    
+    .about-area .itdp {
+    width: 80% !important;
+    margin: 0 auto !important;
+    }
+}
