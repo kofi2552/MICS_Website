@@ -15,7 +15,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Morgan International Community School</title>
         <meta name="description" content="Empowering Futures, Globally. Excellence in Education, Redefined.">
-        <meta name="author" content="Mr cephas">
+        <meta name="author" content="Morgan International Community School">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -134,7 +134,7 @@
                                                 </ul>
                                             </li>
 
-                                            <li class="hidden-sm"><a href="contact.php" style="text-decoration: none;">Blog</a> </li>
+                                            <li><a href="blog.php" style="text-decoration: none;">Blog</a> </li>
 
                                             <li><a href="" style="text-decoration: none;">About Us</a>
                                                 <ul>
