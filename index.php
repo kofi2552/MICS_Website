@@ -1,7 +1,7 @@
 <?php 
-include ("header.php");
+include ("components/header.php");
 ?>
-        <section class="quote-section">
+        <!-- <section class="quote-section">
             <div class="container">
                 <div class="row">
                 <div class="col-xs-12 quote-content">
@@ -10,7 +10,7 @@ include ("header.php");
                 </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 		<!-- Background Area Start -->
         <section id="slider-container" class="slider-area"> 
             <div class="slider-owl owl-theme owl-carousel"> 
@@ -509,5 +509,5 @@ include ("header.php");
 </body>
      
 <?php
-include ("footer.php");
+include ("components/footer.php");
 ?>

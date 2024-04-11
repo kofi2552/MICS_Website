@@ -187,10 +187,10 @@ ul {
   position: relative;
   text-transform: uppercase;
   z-index: 9;
-  background: #15380c;
+  background: #009959;
 }
 .default-btn:hover {
-  color: #1f401e;
+  color: #07452d;
   background: #fff;
 }
 
@@ -211,14 +211,14 @@ textarea {
   z-index: 1;
 }
 .banner-content {
-  padding: 132px 0 134px;
+  padding: 100px 0;
 }
-.banner-content h2 {
-  font-size: 40px;
+.banner-content h1 {
+  font-size: 50px;
   color: #fff;
   font-family: "Open Sans", sans-serif;
+  text-align: left;
   font-weight: 700;
-  text-transform: uppercase;
   z-index: 1;
   position: relative;
 }
@@ -1149,7 +1149,8 @@ textarea {
 
 .header-area {
   height: 70px;
-  background: #292929;
+  /* background: #292929; */
+  background: #14865c;
   color: #fff !important;
 }
 
@@ -1903,6 +1904,10 @@ textarea {
   position: relative;
 }
 
+.slider-area {
+  height: 90vh;
+}
+
 .slider-area,
 .single-banner {
   position: relative;
@@ -2088,7 +2093,7 @@ textarea {
   animation-delay: 1700ms;
 }
 .owl-nav div {
-  background: #030;
+  /* background: #030; */
   color: #ddd;
   font-size: 18px;
   border-radius: 3px;
@@ -2128,9 +2133,7 @@ textarea {
 .fadeInDown {
   animation-name: fadeInDown;
 }
-.slider-area {
-  height: 70vh;
-}
+
 .slider-area div {
   height: 100%;
 }
@@ -3381,6 +3384,7 @@ textarea {
 .blog-img img {
   width: 100%;
 }
+
 /*
 .blog-hover {
     content: "";
@@ -3467,6 +3471,15 @@ textarea {
   margin-bottom: 35px;
   line-height: 26px;
 }
+
+.single-blog-widget ul {
+  padding-left: 10px !important;
+}
+
+.single-blog-widget ul {
+  border-left: 1px solid #d6d6d6;
+}
+
 .blog-search form input {
   border: 1px solid #e1e1e1;
   padding: 11px 43px 11px 12px;
@@ -3503,7 +3516,7 @@ textarea {
 }
 .single-blog-widget ul li {
   display: block;
-  padding-bottom: 27px;
+  padding-bottom: 18px;
 }
 .single-blog-widget ul li:last-child {
   padding-bottom: 5px;
@@ -3518,7 +3531,7 @@ textarea {
   transition: all 0.5s ease 0s;
 }
 .single-blog-widget ul li:hover a {
-  color: #ec1c23;
+  color: #006c31;
 }
 .single-blog-banner a {
   position: relative;
@@ -3625,38 +3638,114 @@ textarea {
   background: #2c2b5e;
   border: 1px solid #2c2b5e;
 }
+
 .blog-details-content {
   padding-top: 30px;
 }
-.blog-details-content h2 {
-  font-size: 24px;
-  color: #303030;
-  text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
-  margin-bottom: 5px;
+
+.blog-details-content .content-heading {
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
 }
-.blog-details-content h6 {
-  font-size: 16px;
+
+.blog-details-content .content-heading h2 {
+  font-size: 40px;
+  color: #30393a;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-align: left;
+  padding-top: 10px;
+}
+
+.blog-details-content .content-heading ul {
+  list-style: none;
+  width: 100%;
+  /* max-width: 500px; */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 7px;
+  margin-bottom: -3px;
+  margin-top: 10px;
+}
+
+.blog-details-content .content-heading ul li {
+  list-style: none;
+  font-size: 12px;
+  margin-left: 3px;
+}
+
+.blog-details-content h3 {
+  font-size: 24px;
   color: #606060;
   font-family: "Open Sans", sans-serif;
-  font-weight: 400;
+  font-weight: 600;
+  margin: 30px 0;
+}
+
+.blog-details-content h4 {
+  font-size: 20px;
+  color: #606060;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
   margin-bottom: 35px;
 }
+
+.blog-details-content h6 {
+  font-size: 18px;
+  color: #606060;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  margin-bottom: 35px;
+}
+
 .blog-details-content p {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
   color: #606060;
   margin-bottom: 25px;
 }
-.blog-details-content p.quote {
+.blog-details-content .quote {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   color: #606060;
-  margin-bottom: 25px;
-  font-style: italic;
   line-height: 25px;
-  margin-top: 35px;
+  margin: 35px 0;
+  background: #fafafa;
+  padding: 5px;
+  position: relative;
 }
+
+.blog-details-content .quote a::before {
+  position: absolute;
+  content: "\2794";
+  font-size: 15px;
+  margin-left: -20px;
+  font-weight: 300;
+}
+
+.blog-details-content .quote a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #606060;
+  margin-left: 20px;
+}
+
+.blog-details-content .quote a:hover {
+  text-decoration: underline;
+}
+
+.blog-details-img {
+  width: 100%;
+}
+
+.blog-details-img img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  object-fit: cover;
+}
+
 .reply-area h3 {
   font-size: 20px;
   color: #303030;
@@ -3707,6 +3796,37 @@ textarea {
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
 }
+
+.related-blog-posts {
+  width: 70%;
+  margin-bottom: 30px;
+}
+
+.related-blog-posts .single-related-post {
+  position: relative;
+}
+.related-blog-posts .single-related-post img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+.related-blog-posts .single-related-post .overlay-content {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: #00000061;
+}
+.related-blog-posts .single-related-post p {
+  color: #fff !important;
+  width: 100%;
+  height: 40px;
+  padding: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /*----------------------------------------*/
 /*  10. Subscribe CSS
 /*----------------------------------------*/
