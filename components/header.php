@@ -82,7 +82,7 @@
 					<div class="row">
 						<div class="col-md-3 col-sm-3 col-xs-6 top-nav">
 							<div class="logo">
-								<a href="index.php"><img src="img/logo.png" alt="MICS" style="border-radius:50px;"/></a>
+								<a href="index.php"><img src="img/MICS-main-logo.svg" alt="MICS-logo" style="border-radius:50px;"/></a>
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-6 top-nav">
