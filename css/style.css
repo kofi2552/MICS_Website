@@ -1150,7 +1150,7 @@ textarea {
 .header-area {
   height: 70px;
   /* background: #292929; */
-  background: #14865c;
+  background: #05ac85;
   color: #fff !important;
 }
 
@@ -1368,9 +1368,8 @@ textarea {
   line-height: 69px;
 }
 .mean-container a.meanmenu-reveal {
-  border: 1px solid #806338;
+  border: 1px solid #fff;
   color: #000;
-  /* margin-top: -94px; */
   padding: 4px 5px;
   position: absolute;
   -webkit-transition: all 0.6s ease 0s;
@@ -1386,7 +1385,7 @@ textarea {
 } */
 
 .mean-container a.meanmenu-reveal span {
-  background-color: #806338;
+  background-color: #fff;
 }
 .mean-container .mean-nav {
   border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -1670,7 +1669,7 @@ textarea {
 .header-top .header-top-left p {
   font-size: 15px;
   line-height: 35px !important;
-  color: #000 !important;
+  color: #282b2c !important;
 }
 
 /* .header-top:after {
@@ -1732,7 +1731,7 @@ textarea {
 .header-top-right ul li a {
   position: relative;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   font-family: "Open Sans", sans-serif;
   color: #fff;
   z-index: 1;
@@ -2241,6 +2240,7 @@ textarea {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   color: #fff;
+  font-weight: 500;
 }
 
 .single-notice-right h3 {
@@ -2415,9 +2415,9 @@ textarea {
   margin-bottom: 15px;
 }
 .welcome-section-area .welcome-content p {
-  color: #606060;
-  font-size: 26px;
-  font-weight: 400;
+  color: #34393a;
+  font-size: 16px;
+  font-weight: 500;
   line-height: normal;
   font-family: "Open Sans", sans-serif;
   text-transform: capitalize;
@@ -3192,7 +3192,7 @@ textarea {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   color: #fff;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 15px;
 }
 
@@ -3218,6 +3218,10 @@ textarea {
 .nblog-area {
   background: #fff;
   position: relative;
+}
+
+.nblog-area .nblog-content img {
+  width: 100%;
 }
 
 .carousel .section-title h3 {
@@ -3253,8 +3257,8 @@ textarea {
 .nblog-content h5 {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  color: #34423f;
-  font-weight: 400;
+  color: #34393a;
+  font-weight: 500;
   margin-bottom: 15px;
 }
 .nblog-content h5 {

@@ -49,7 +49,7 @@
     margin-right: 10px;
     padding: 8px 10px;
   }
-  
+
   /* .event-date {
     margin-right: 10px;
   } */
@@ -457,6 +457,10 @@
     margin-top: -62px;
   } */
 
+  .event-area .section-title h3 {
+    padding-top: 0 !important;
+  }
+
   .search-btn {
     top: 38px;
   }
@@ -663,7 +667,7 @@
   .header-top::after {
     width: 100%;
   }
- 
+
   .slide-content {
     padding-left: 20px;
   }
@@ -732,7 +736,7 @@
   .teacher-details-content ul li {
     font-size: 13px;
   }
-  .header-top-left p{
+  .header-top-left p {
     font-size: 11px !important;
   }
 
@@ -898,7 +902,6 @@
   }
 }
 
-
 @media screen and (max-width: 914px) {
   .welcome-section-area {
     padding: 70px 10px 40px 10px !important;
@@ -907,16 +910,10 @@
   .welcome-section-area .welcome-content img {
     max-width: 100% !important;
   }
-
 }
-
-
-
-
 
 /* -------------------------------------------------------------------------------NEW RESPONSIVENESS CODE ------------------------------------------------------------------*/
 @media screen and (max-width: 1240px) {
-
   /* quote section */
   .quote-section {
     height: 100% !important;
@@ -936,15 +933,14 @@
     margin-bottom: 10px !important;
   }
 
-
-/* hero section */
+  /* hero section */
   .slider-area .arrw-down {
     margin-right: 60px;
   }
 
   /* dates section */
   .event-area .dates-left {
-      margin-left: 0 !important;
+    margin-left: 0 !important;
   }
   .event-area .single-event {
     height: 80px;
@@ -962,7 +958,7 @@
     height: 80px !important;
     line-height: 80px;
   }
-  .event-content span{
+  .event-content span {
     font-size: 12px;
     line-height: 1.2px;
   }
@@ -983,7 +979,6 @@
   .notice-area.three {
     padding-top: 80px !important;
   }
-
 }
 
 @media screen and (max-width: 768px) {
@@ -993,14 +988,14 @@
     margin-bottom: 20px;
   }
 
-  .course-section-title p{
+  .course-section-title p {
     font-size: 16px;
     line-height: 1.5;
     padding-right: 0 !important;
   }
 
-  .course-section-title{
-   margin-bottom: 40px;
+  .course-section-title {
+    margin-bottom: 40px;
   }
 
   .courses-area .single-course {
@@ -1010,5 +1005,4 @@
   .courses-area .row {
     margin-bottom: 0 !important;
   }
-
 }
