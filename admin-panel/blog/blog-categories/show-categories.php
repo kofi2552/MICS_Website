@@ -5,7 +5,7 @@ require "../../includes/config.php";
 // Assuming $conn is your PDO connection
 
 if (!isset($_SESSION['email'])) {
-    header("location: http://localhost/micsweb/admin-panel/admins/login-admins.php");
+    header("location:../../admins/login-admins.php");
     exit(); // Always exit after header redirection
 }
 

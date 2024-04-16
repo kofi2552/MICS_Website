@@ -2,16 +2,15 @@
 require "../../layouts/header.php";
 require "../../includes/config.php";
 
-// Assuming $conn is your PDO connection
 
 if (!isset($_SESSION['email'])) {
-    header("location: http://localhost/micsweb/admin-panel/admins/login-admins.php");
+    header("location: ../../admins/login-admins.php");
     exit(); // Always exit after header redirection
 }
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
+    $name = htmlspecialchars($_POST['name']);
 
     // Prepare and execute SQL query to insert the category
     $insertQuery = $conn->prepare("INSERT INTO blog_categories (name) VALUES (:name)");

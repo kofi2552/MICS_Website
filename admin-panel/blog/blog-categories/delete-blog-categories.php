@@ -3,7 +3,7 @@ require "../../includes/config.php";
 
 // Check if category ID is provided in the URL
 if(isset($_GET['id'])) {
-    $categoryId = $_GET['id'];
+    $categoryId = htmlspecialchars($_GET['id']);
 
     // Prepare and execute a DELETE query to delete the category
     $deleteQuery = $conn->prepare("DELETE FROM blog_categories WHERE id = :id");

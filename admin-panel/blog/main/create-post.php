@@ -1,11 +1,10 @@
 <?php require "../../layouts/header.php"; ?>
 <?php require "../../includes/config.php"; ?>
 
-
 <?php 
     if(!isset($_SESSION['email'])) {
-        header("location: http://localhost/micsweb/admin-panel/admins/login-admins.php");
-        exit(); // Always exit after header redirection
+        header("location: ../../admins/login-admins.php");
+        exit(); 
     }
 ?>
 <?php
@@ -16,10 +15,11 @@ if (isset($_POST['submit'])) {
                 Some fields are left empty or image is not uploaded!!!
               </div>";
     } else {
-        $title = $_POST['title'];
+        $title = htmlspecialchars($_POST['title']);
         $content = $_POST['content'];
-        $category = $_POST['category_id'];
-
+        $category = htmlspecialchars($_POST['category_id']);
+        $createdBy = $_SESSION['email']; 
+        
         // Handle image upload
         $targetDir = "../asset/uploads/"; // Directory where images will be stored
         $targetFile = $targetDir . basename($_FILES["img"]["name"]);
@@ -48,17 +48,20 @@ if (isset($_POST['submit'])) {
             $image = basename($_FILES["img"]["name"]);
 
             // Insert data into the database
-            $insert = $conn->prepare("INSERT INTO blog_posts (title,img,content,category_id) VALUES
-                (:title,:img,:content,:category_id)");
+            $insert = $conn->prepare("INSERT INTO blog_posts (title,img,content,category_id,created_by) VALUES
+                (:title,:img,:content,:category_id,:created_by)");
 
             $insert->execute([
                 ':title' => $title,
                 ':img' => $image,
                 ':content' => $content,
-                ':category_id' => $category
+                ':category_id' => $category,
+                ':created_by' => $createdBy
             ]);
-
-            header("location: " . APPURL . "/blog/main/show-post.php");
+            
+            
+            $_SESSION['created_status'] = $insert ? 'success' : 'failed';
+            header("location: show-post.php?success=true");
             exit();
         } else {
             echo "<div class='alert alert-danger text-center' role='alert'>
@@ -69,6 +72,9 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+
+
+
 
     <style>
         /* Additional CSS styles */
