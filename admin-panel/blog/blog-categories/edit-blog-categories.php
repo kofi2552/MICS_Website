@@ -1,9 +1,12 @@
 <?php
 require "../../includes/config.php";
+require "../../layouts/header.php";
+?>
 
+<?php
 // Check if category ID is provided in the URL
 if(isset($_GET['id'])) {
-    $categoryId = $_GET['id'];
+    $categoryId = htmlspecialchars($_GET['id']);
 
     // Fetch the category details from the database
     $categoryQuery = $conn->prepare("SELECT * FROM blog_categories WHERE id = :id");
@@ -13,7 +16,7 @@ if(isset($_GET['id'])) {
     // Check if form is submitted
     if(isset($_POST['submit'])) {
         // Retrieve form data
-        $categoryName = $_POST['name'];
+        $categoryName = htmlspecialchars($_POST['name']);
 
         // Update category in the database
         $updateQuery = $conn->prepare("UPDATE blog_categories SET name = :name WHERE id = :id");
@@ -32,6 +35,15 @@ if(isset($_GET['id'])) {
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Edit Category</h1>
+    <a href="<?php echo APPURL; ?>/<?php
+            if($_SESSION['roles'] == "director") {
+                echo "supa.php";
+            } elseif($_SESSION['roles'] == "admin") {
+                echo "index.php";
+            } else {
+                echo "unauthorized.php";
+            }
+        ?>" class="btn btn-primary mb-4 text-center float-right">Home</a>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form method="POST">

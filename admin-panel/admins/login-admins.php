@@ -5,15 +5,14 @@
 <?php 
 
     if(isset($_SESSION['email'])) {
-      // header("location: http://localhost/micsweb/admin-panel/admin.php");
-      // Redirect user based on their role
+      
       if ($_SESSION['roles'] == 'director') {
-          header("Location: http://localhost/micsweb/admin-panel/supa.php");
+          header("Location: ../supa.php");
       } elseif ($_SESSION['roles'] == 'admin') {
-          header("Location: http://localhost/micsweb/admin-panel/index.php");
+          header("Location: ../index.php");
       } else {
           // Handle other roles or redirect to a default page
-          header("Location: http://localhost/micsweb/admin-panel/admins/login-admins.php");
+          header("Location: login-admins.php");
       }
       exit();
     
@@ -27,8 +26,8 @@
               </div>";
         } else {
           // validate and sanitize all input here. dont forget
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+            $email = htmlspecialchars($_POST['email']);
+            $password = htmlspecialchars($_POST['password']);
 
             $login = $conn->query("SELECT * FROM admins WHERE email = '$email'");
 
@@ -51,13 +50,12 @@
 
                     
                     if($roles == 'director'){
-                      header('location: http://localhost/micsweb/admin-panel/supa.php');
+                      header('location: ../supa.php');
                     }
                     if($roles == 'admin'){
-                      header('location: http://localhost/micsweb/admin-panel/index.php');
+                      header('location: ../index.php');
                     }
         
-                   // header('location: http://localhost/micsweb/admin-panel/index.php');
                 } else {
 
                   echo "<div class='alert alert-danger  text-center text-white role='alert'>
@@ -114,6 +112,10 @@
     </div>
   </div>
 </div>
-
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 
 <?php require "../layouts/footer.php"; ?>

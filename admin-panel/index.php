@@ -42,12 +42,12 @@ if ($_SESSION['roles'] !== 'admin') {
                         <div class="card-body">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo APPURL?>/blog/main/show-post.php">
+                                    <a class="nav-link" href="blog/main/show-post.php">
                                         <i class="fas fa-plus-circle mr-2"></i>Manage Blog
                                     </a>
                                 </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo APPURL?>/blog/blog-categories/show-categories.php">
+                                    <a class="nav-link" href="blog/blog-categories/show-categories.php">
                                         <i class="fas fa-edit mr-2"></i>Mange blog Categories
                                     </a>
                                 </li>

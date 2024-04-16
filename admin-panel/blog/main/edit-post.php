@@ -2,16 +2,16 @@
 <?php require "../../includes/config.php"; ?>
 
 <?php
-// Assuming $conn is your PDO connection
+
 
 if(!isset($_SESSION['email'])) {
-    header("location: http://localhost/micsweb/admin-panel/admins/login-admins.php");
+    header("location: ../../admins/login-admins.php");
     exit(); // Always exit after header redirection
 }
 
 // Fetch the post details
 if(isset($_GET['id'])) {
-    $postId = $_GET['id'];
+    $postId =htmlspecialchars ($_GET['id']);
     $postQuery = $conn->prepare("SELECT blog_posts.id AS id, blog_posts.title AS title,
      blog_posts.img AS img, blog_posts.content AS content,blog_categories.name AS name, blog_posts.is_published AS status 
     FROM blog_categories 
@@ -23,10 +23,12 @@ if(isset($_GET['id'])) {
 
 // Update the post with new image if provided
 if(isset($_POST['submit'])) {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $category = $_POST['category_id'];
-    $status = $_POST['status'];
+    $title = htmlspecialchars($_POST['title']);
+    $content = htmlspecialchars($_POST['content']);
+    $category = htmlspecialchars($_POST['category_id']);
+    $status = htmlspecialchars($_POST['status']);
+    $update_date = date("Y-m-d H:i:s"); // Get the current date and time
+    $updated_by = $_SESSION['email']; // Get the user ID of the current user
 
     // Check if a new image file is uploaded
     if(isset($_FILES['new_image']) && $_FILES['new_image']['error'] === UPLOAD_ERR_OK) {
@@ -37,35 +39,56 @@ if(isset($_POST['submit'])) {
 
         // Move the uploaded file to the upload directory
         if(move_uploaded_file($tempName, $newImagePath)) {
-            // Update the post with the new image path
-            $updateQuery = $conn->prepare("UPDATE blog_posts SET title = :title, img = :img, content = :content, category_id = :category_id, is_published = :status WHERE id = :id");
-            $updateQuery->execute([':title' => $title, ':img' => $newImageName, ':content' => $content, ':category_id' => $category, ':status' => $status, ':id' => $postId]);
-            header("location: http://localhost/micsweb/admin-panel/blog/main/show-post.php");
-    exit();
+            // Update the post with the new image path and updated_date
+            $updateQuery = $conn->prepare("UPDATE blog_posts SET title = :title, img = :img, content = :content, category_id = :category_id, is_published = :status, updated_date = :updated_date, updated_by = :updated_by WHERE id = :id");
+            $updateQuery->execute([
+                ':title' => $title,
+                ':img' => $newImageName, 
+                ':content' => $content, 
+                ':category_id' => $category, 
+                ':status' => $status,
+                ':updated_date' => $update_date, 
+                ':updated_by' => $updated_by, 
+                ':id' => $postId
+            ]);
+                // Set session variable indicating update status
+                 $_SESSION['update_status'] = $updateQuery ? 'success' : 'failed';
+            header("location: show-post.php");
+            exit();
         }
     } else {
         // Update the post without changing the image
-        $updateQuery = $conn->prepare("UPDATE blog_posts SET title = :title, content = :content, category_id = :category_id, is_published = :status WHERE id = :id");
-        $updateQuery->execute([':title' => $title, ':content' => $content, ':category_id' => $category, ':status' => $status, ':id' => $postId]);
-        header("location: http://localhost/micsweb/admin-panel/blog/main/show-post.php");
+        $updateQuery = $conn->prepare("UPDATE blog_posts SET title = :title, content = :content, category_id = :category_id, is_published = :status, updated_date = :updated_date, updated_by = :updated_by WHERE id = :id");
+        $updateQuery->execute([
+            ':title' => $title,
+            ':content' => $content, 
+            ':category_id' => $category, 
+            ':status' => $status, 
+            ':updated_date' => $update_date, // Bind the updated_date value
+            ':updated_by' => $updated_by, // Bind the updated_by value
+            ':id' => $postId
+        ]);
+            // Set session variable indicating update status
+            $_SESSION['update_status'] = $updateQuery ? 'success' : 'failed';
+        header("location: show-post.php");
+        exit();
     }
 }
-    // echo "<script>succeddfully updated</script>"
-    
+// echo "<script>succeddfully updated</script>"
 ?>
 
 
 
-    <style>
-        /* Custom styles */
-        .container {
-            margin-top: 50px;
-        }
-        .image-thumbnail {
-            max-width: 200px;
-            max-height: 200px;
-        }
-    </style>
+<style>
+    /* Custom styles */
+    .container {
+        margin-top: 50px;
+    }
+    .image-thumbnail {
+        max-width: 200px;
+        max-height: 200px;
+    }
+</style>
 </head>
 
 
@@ -114,7 +137,7 @@ if(isset($_POST['submit'])) {
         </div>
         <div class="form-group">
             <label for="image">Current Image:</label><br>
-            <img src="<?php echo APPURL ?>/blog/asset/uploads/<?php echo $post->img; ?>" alt="Post Image" class="image-thumbnail">
+            <img src="../asset/uploads/<?php echo $post->img; ?>" alt="Post Image" class="image-thumbnail">
         </div>
         <div class="form-group">
             <label for="new_image">Choose New Image (Optional):</label>
