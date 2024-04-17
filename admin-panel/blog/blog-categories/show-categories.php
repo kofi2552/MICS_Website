@@ -2,7 +2,7 @@
 require "../../layouts/header.php";
 require "../../includes/config.php";
 
-// Assuming $conn is your PDO connection
+
 
 if (!isset($_SESSION['email'])) {
     header("location:../../admins/login-admins.php");
@@ -19,7 +19,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_OBJ);
 <div class="container">
     <br>
     <h1 class="mb-4">Categories</h1>
-    <a href="<?php echo APPURL?>/blog/blog-categories/create-blog-category.php" class="btn btn-primary mb-4 text-center float-center">Add Categories</a>
+    <a href="create-blog-category.php" class="btn btn-primary mb-4 text-center float-right">Add Categories</a>
         <a href="<?php echo APPURL; ?>/<?php
             if($_SESSION['roles'] == "director") {
                 echo "supa.php";
@@ -28,7 +28,7 @@ $categories = $categoriesQuery->fetchAll(PDO::FETCH_OBJ);
             } else {
                 echo "unauthorized.php";
             }
-        ?>" class="btn btn-primary mb-4 text-center float-right">Home</a>
+        ?>" class="btn btn-primary mb-4 text-center float-left">Home</a>
     <table class="table table-bordered">
         <thead>
             <tr>

@@ -2,10 +2,10 @@
 <?php require "../includes/config.php"; ?>
 
 <?php  
-// Redirect to login page if session email is not set
+
 if (!isset($_SESSION['email'])) {
     header("location:login-admins.php");
-    exit(); // Exit to prevent further execution
+    exit(); 
 }
 
 // Check if role of logged-in user is not "director"
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])) {
 }
 ?>
 
-<a href="<?php echo APPURL; ?>/supa.php" class="btn btn-primary mb-4 text-center float-left">Home</a>
+<a href="../supa.php" class="btn btn-primary mb-4 text-center float-left">Home</a>
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">

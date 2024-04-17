@@ -95,7 +95,7 @@ if(isset($_POST['submit'])) {
 <div class="container">
     <h1 class="mb-4">Edit Post</h1>
     <div class="container"> 
-        <a href="<?php echo APPURL; ?>/<?php
+        <a href="../../<?php
             if($_SESSION['roles'] == "director") {
                 echo "supa.php";
             } elseif($_SESSION['roles'] == "admin") {

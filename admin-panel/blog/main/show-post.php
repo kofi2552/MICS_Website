@@ -10,6 +10,9 @@ if (!isset($_SESSION['email'])) {
 }
 
 $search = isset($_GET['search']) ? $_GET['search'] : '';
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$limit = isset($_GET['limit']) ? $_GET['limit'] : 10; // Number of items per page
+$showAll = isset($_GET['show_all']) && $_GET['show_all'] == '1';
 
 // Fetch posts with categories, including created_date, and order by ID in descending order
 $query = "SELECT blog_posts.id AS id, blog_posts.title AS title,
@@ -21,12 +24,20 @@ if (!empty($search)) {
     $query .= "WHERE blog_posts.title LIKE '%$search%' OR blog_posts.content LIKE '%$search%' ";
 }
 
-$query .= "ORDER BY blog_posts.id DESC";
+if (!$showAll) {
+    $offset = ($page - 1) * $limit;
+    $query .= "ORDER BY blog_posts.id DESC LIMIT $limit OFFSET $offset";
+}
 
 $postsQuery = $conn->query($query);
 $postsQuery->execute();
 $posts = $postsQuery->fetchAll(PDO::FETCH_OBJ);
 
+// Count total number of posts
+$totalQuery = $conn->query("SELECT COUNT(*) AS total FROM blog_posts");
+$totalQuery->execute();
+$total = $totalQuery->fetch(PDO::FETCH_ASSOC)['total'];
+$totalPages = ceil($total / $limit);
 ?>
 
 
@@ -71,11 +82,29 @@ $posts = $postsQuery->fetchAll(PDO::FETCH_OBJ);
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
             </div>
         </div>
-    </form>
+        
+        <div class="form-inline mt-2 mb-3">
+            <div class="form-group mr-3">
+             <label for="limit">Show:</label>
+            <select class="form-control form-control-sm" name="limit" id="limit">
+            <option value="10" <?php echo $limit == 10 ? 'selected' : ''; ?>>10</option>
+            <option value="25" <?php echo $limit == 25 ? 'selected' : ''; ?>>25</option>
+            <option value="50" <?php echo $limit == 50 ? 'selected' : ''; ?>>50</option>
+            </select>
+        </div>
+            <div class="form-group mr-3">
+                <label for="show_all">Show all records:</label>
+                <select class="form-control form-control-sm" name="show_all" id="show_all">
+                    <option value="0" <?php echo !$showAll ? 'selected' : ''; ?>>Paginated</option>
+                    <option value="1" <?php echo $showAll ? 'selected' : ''; ?>>All</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+        </div>
 
-    <div class="table-responsive">
-        <div class="container"> 
-        <a href="<?php echo APPURL; ?>/<?php
+
+        <a href="create-post.php" class="btn btn-primary mb-2 text-center float-right">Add New Post</a>
+        <a href="../../<?php
             if($_SESSION['roles'] == "director") {
                 echo "supa.php";
             } elseif($_SESSION['roles'] == "admin") {
@@ -83,8 +112,10 @@ $posts = $postsQuery->fetchAll(PDO::FETCH_OBJ);
             } else {
                 echo "unauthorized.php";
             }
-        ?>" class="btn btn-primary mb-4 text-center float-left">Home</a>
-        <a href="create-post.php" class="btn btn-primary mb-4 text-center float-right">Add New Post</a>
+        ?>" class="btn btn-primary mb-4 text-center float-left padding 2">Home</a>
+    </form>
+
+    <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -121,6 +152,17 @@ $posts = $postsQuery->fetchAll(PDO::FETCH_OBJ);
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php if (!$showAll && $totalPages > 1) : ?>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                        <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
+                            <a class="page-link" href="?page=<?php echo $i; ?>&limit=<?php echo $limit; ?>&search=<?php echo htmlentities($search); ?>"><?php echo $i; ?></a>
+                        </li>
+                    <?php endfor; ?>
+                </ul>
+            </nav>
+        <?php endif; ?>
     </div>
 </div>
 
