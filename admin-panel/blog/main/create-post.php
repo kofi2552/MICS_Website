@@ -4,7 +4,7 @@
 <?php 
     if(!isset($_SESSION['email'])) {
         header("location: ../../admins/login-admins.php");
-        exit(); 
+        exit(); // Always exit after header redirection
     }
 ?>
 <?php
@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
 <body>
 <h1 class="mb-4">Add Post</h1>
 <div class="container"> 
-        <a href="<?php echo APPURL; ?>/<?php
+        <a href="../../<?php
             if($_SESSION['roles'] == "director") {
                 echo "supa.php";
             } elseif($_SESSION['roles'] == "admin") {

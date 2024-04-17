@@ -35,7 +35,7 @@ if(isset($_GET['id'])) {
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Edit Category</h1>
-    <a href="<?php echo APPURL; ?>/<?php
+    <a href="../../<?php
             if($_SESSION['roles'] == "director") {
                 echo "supa.php";
             } elseif($_SESSION['roles'] == "admin") {

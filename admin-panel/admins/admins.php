@@ -7,10 +7,7 @@
     if(!isset($_SESSION['email'])) {
       header("location: login-admins.php");
     }
-    // if(!isset($_SESSION['roles'] =="director")) {
-    //     header("location: http://localhost/micsweb/admin-panel/admins/login-admins.php");
-    // }
-  
+    
 
 
     $admins = $conn->query(
@@ -32,8 +29,8 @@
             <div class="card-body">
                 
                 
-                <a href="<?php echo APPURL?>/supa.php" class="btn btn-primary mb-4 text-center float-left">Home</a>
-                <a href="<?php echo APPURL?>/admins/create-admins.php" class="btn btn-primary mb-4 text-center float-right">Create Admins</a>
+                <a href="../supa.php" class="btn btn-primary mb-4 text-center float-left">Home</a>
+                <a href="create-admins.php" class="btn btn-primary mb-4 text-center float-right">Create Admins</a>
                 <br>
                 <br>
                 <!-- Display created status message -->
