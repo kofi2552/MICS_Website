@@ -1,5 +1,7 @@
 # MICS_Website
 
+# i am setup
+
 Website Project management for MICS
 
 TO START WORKING ON THIS PROJECT
