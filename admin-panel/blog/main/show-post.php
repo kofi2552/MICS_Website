@@ -52,8 +52,12 @@ $totalPages = ceil($total / $limit);
         max-width: 300px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        /* white-space: nowrap; */
     }
+    .content-limit img {
+        width: 50px !important;
+    }
+
 </style>
 
 <div class="container">
@@ -135,18 +139,19 @@ $totalPages = ceil($total / $limit);
                         <td><?php echo $post->createdby; ?></td>
                         <td><?php echo $post->title; ?></td>
                         <td>
-                            <div class="content-limit"><?php echo $post->content; ?></div>
+                            <div class="content-limit"><?php echo nl2br(html_entity_decode(substr( $post->content, 0, 200))); ?></div>
                         </td>
                         <td><?php echo $post->name; ?></td>
                         <td><img src="../asset/uploads/<?php echo $post->img; ?>" alt="Post Image" class="image-thumbnail"></td>
                         <td>
-                            <a href='edit-post.php?id=<?php echo $post->id; ?>' class="btn btn-primary btn-sm">Edit</a>
-                            <a href='delete-post.php?id=<?php echo $post->id; ?>' class="btn btn-danger btn-sm" onclick='return confirm("Are you sure you want to delete this post?")'>Delete</a>
-                            <?php if ($post->status == 'review') : ?>
-                                <a href='#' class="btn btn-success btn-sm">Publish</a>
-                            <?php elseif ($post->status == 'published') : ?>
-                                <a href='#' class="btn btn-warning btn-sm">Unpublish</a>
-                            <?php endif; ?>
+                            <!-- <a href='edit-post.php?id=<?php //echo $post->id; ?>' class="btn btn-primary btn-sm m-1">Edit</a> -->
+                            <a href='delete-post.php?id=<?php echo $post->id; ?>' class="btn btn-danger btn-sm m-1" onclick='return confirm("Are you sure you want to delete this post?")'>Delete</a>
+                            
+                            <?php if ($post->status == 1) : ?>
+                            <a href='ispublished.php?id=<?php echo $post->id; ?>' class="btn btn-warning btn-sm m-1">Unpublish</a>
+                        <?php else : ?>
+                            <a href='ispublished.php?id=<?php echo $post->id; ?>' class="btn btn-success btn-sm m-1">Publish</a>
+                        <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

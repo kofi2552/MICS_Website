@@ -13,7 +13,7 @@
         $user = "root";
 
         //pass
-        $pass = "justice123";
+        $pass = "";
 
 
         $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);

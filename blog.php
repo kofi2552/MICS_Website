@@ -2,7 +2,41 @@
 
 include ("components/header.php");
 
-?>
+require("admin-panel/includes/config.php");
+
+$topic = isset($_GET['topic']) ? urldecode($_GET['topic']) : '';
+
+// Check if the post ID is set in the URL
+if(isset($_GET['id'])) {
+    // Sanitize the input to prevent SQL injection
+    $post_id = htmlspecialchars($_GET['id']);
+
+    // Fetch the specific blog post from the database based on the post ID
+    $query = $conn->prepare("SELECT blog_posts.*, blog_categories.name AS category_name 
+                            FROM blog_posts 
+                            JOIN blog_categories ON blog_posts.category_id = blog_categories.id 
+                            WHERE blog_posts.id = ?");
+    $query->execute([$post_id]);
+    
+    $post = $query->fetch(PDO::FETCH_ASSOC);
+
+    // Fetch related posts based on the category of the current post
+    if($post) {
+        $related_query = $conn->prepare("SELECT blog_posts.*, blog_categories.name AS category_name 
+                                    FROM blog_posts 
+                                    JOIN blog_categories ON blog_posts.category_id = blog_categories.id 
+                                    WHERE blog_posts.category_id = ? AND blog_posts.id != ? AND blog_posts.is_published = 1
+                                    ORDER BY blog_posts.created_date DESC 
+                                    LIMIT 3");
+        $related_query->execute([$post['category_id'], $post['id']]);
+
+        $related_posts = $related_query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+ ?>
+
+
 		<!-- Header Area End -->
 		<!-- Banner Area Start -->
 		<div class="banner-area-wrapper">
@@ -25,78 +59,128 @@ include ("components/header.php");
         <div class="blog-details-area pt-60 pb-140">
             <div class="container">
                 <div class="row">
+                    <?php   // Check if a post with the given ID exists
+                        if($post) {
+                            // Display the blog post conten
+                            ?>
                     <div class="col-md-8">
                         <div class="blog-details">
                             <div class="blog-details-img">
-                                <img class="blog-image" src="img/blog/blog_img.png" alt="MICS_blog-image"/>
+                                <img class="blog-image" src="admin-panel/blog/asset/uploads/<?php echo $post['img']; ?>" alt="MICS_blog-image"/>
                             </div>
                             <div class="blog-details-content">
                                 <div class="content-heading">
-                                <h2>8 ways to study fast for an exam</h2>
+                                  <h2><?php echo $post['title']; ?></h2>
                                     <ul>
-                                        <li><i class="fa-regular fa-calendar-check"></i> 11 April 2024</li>
-                                        <li>&#9998; admin</li>
+                                        <li><i class="fa-regular fa-calendar-check"></i><?php echo date('M Y', strtotime($post['created_date'])); ?></li>
+                                        <li><?php echo $post['category_name']; ?></li>
                                     </ul>
                                 </div>
                                 <br>
-                                <p>The Morgan International Community School Board of Directors acts as the overall corporate and legal authority of the School. All activities, programmes and groups within the MICS community fall under the legal authority of the School Board of Directors. Decisions regarding the strategic direction of the school as well as all decisions of a general policy nature are taken at the level of the School Board.</p>
-                          
-                                <h3>Board Members</h3>
-                                <h6>Rev. Fr. Prof. Anthony Afful Broni, PhD - Board Chariman</h6>
-                          
-                                <p>Very Rev Prof. Fr. Anthony Afful Broni, who was the former Pro Vice Chancellor of the University of Education, Winneba, holds a PhD in Educational Administration and Management and a Masters in Pastoral Counselling from New York City's Fordham University. <br><br>Having won the Jesuit Scholarship for Missionaries to support his Masters studies, he also won a Graduate Assistantship and worked at the Office of the Chair, A.P.UE, at Fordham as a doctoral student. Prior to that, he obtained a Diploma in Sacred Theology from the University of Ghana, Legon while pursuing higher studies in Sacred Theology and Philosophy from St. Peter's Major Seminary, Cape Coast, Ghana. He was the SRC President in his deaconate year at the Major Seminary. <br><br>An ordained Catholic priest of the Archdiocese of Cape Coast for over 26 years, Fr. Afful-Broni serves on many boards including the World Vision International, Morgan International School, and Community Health Nursing Training School, Winneba. He is also President of the Priests' Senate, Chairman of the Education Committee, and Member of the College of Consultors for the Catholic Archdiocese of Cape Coast. A past University Chaplain of the University of Education Winneba, he has for nearly 15 years, been resident Chaplain of Holy Spirit Catholic Church on campus.</p>
-                                
-                                <br>
-                                <h6>Obed Danquah - Founder and Technical Director</h6>
-                                <p>Rev. Danquah is an entrepreneur who found himself first venturing into several businesses at the tender age of eleven. He is the sole founder of Morgan International Community School, Entrepreneurial Training Institute and Africa Worldview. Mr. Danquah holds an Executive MBA from Ghana Institute of Public Administration (GIMPA) since the year 2000. He also holds an MA in Theology, Mission and Culture and an MTH in African Christianity, both from Akrofi Christeller Institute of Theology, Mission and Culture, Akropong, Ghana. He is currently pursuing his PHD in Theology at Akrofi. 
-                                <br>
-                                <p class="quote">
-                                    <a href="">A message from Rev. Obed Danquah</a>
-                                </p>
+                                <div class="post-content">
+                                    <?php 
+                                    // Get the content of the post
+                                    $content = nl2br(html_entity_decode($post['content'])); 
+                                    
+                                    // Use regular expression to close any unclosed image tags
+                                    $content = preg_replace('/<img(.*?)>/', '<img$1/>', $content);
+                                    
+                                    // Wrap the content in a valid HTML structure
+                                    $content = '<div>' . $content . '</div>';
+                                    
+                                    // Create a DOMDocument instance
+                                    $dom = new DOMDocument();
+                                    
+                                    // Suppress errors while loading HTML
+                                    libxml_use_internal_errors(true);
+                                    
+                                    // Load the HTML content into the DOMDocument
+                                    $dom->loadHTML($content);
+                                    
+                                    // Get all img tags
+                                    $imgTags = $dom->getElementsByTagName('img');
+                                    
+                                    // Loop through each img tag
+                                    foreach ($imgTags as $imgTag) {
+                                        // Get the src attribute
+                                        $src = $imgTag->getAttribute('src');
+                                        
+                                        // Remove HTML tags from the src attribute
+                                        $src = strip_tags($src);
+                                        
+                                        // Set the cleaned src attribute
+                                        $imgTag->setAttribute('src', $src);
+                                        
+                                        // Append two empty spaces after the img tag
+                                        $imgTag->parentNode->appendChild($dom->createTextNode('  '));
+                                    }
+                                    
+                                    // Output the modified content, excluding the wrapper div
+                                    echo $dom->saveHTML($dom->documentElement->firstChild); 
+                                    ?>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
-                    
+                    <?php  }   ?>
                     <div class="col-md-4">
-                        <div class="related-blog-posts blog-sidebar right">
-                        <h3>Related Posts</h3>
-                            <div class="single-related-post">
-                                <img src="img/blog/blog_img.png" alt="MICS_blog-post-image">
-                                <div class="overlay-content">
-                                    <p>Description of an entrepreneur who found himself first venturing into several businesses at the tender age of eleven.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-sidebar right">
-                            <div class="single-blog-widget mb-47">
-                                <?php 
-                                    include ("components/side_about.php");
+                        <div class="right-content">
+                            <div class="related-blog-posts blog-sidebar right">
+                                <h3>Related Posts</h3>
+                       
+                                <?php
+                                if (empty($related_posts)) {
+                                    echo "<p>No related posts</p>";
+                                } else {
+                                    $counter = 1; // Initialize a counter to 1 to start from the second post
+
+                                    foreach ($related_posts as $post) {
+                                        // Check if the counter exceeds 3
+                                        if ($counter > 3) {
+                                            break; // Exit the loop if 3 posts have been displayed
+                                        }
+                                        ?>
+                                        <a href="blog.php?id=<?php echo $post['id']; ?>&topic=<?php echo urlencode($post['title']); ?>">
+                                            <div class="single-related-post">
+                                                <img src="admin-panel/blog/asset/uploads/<?php echo $post['img']; ?>" alt="MICS_<?php echo $post['title']; ?>">
+                                                <div class="overlay-content">
+                                                    <p><?php echo substr($post['title'], 0, 200); ?>...</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <?php
+                                        $counter++; // Increment the counter after displaying each post
+                                    }
+
+                                    // Check if the counter is still 0 after the loop
+                                    if ($counter === 0) {
+                                        echo "<p>No related posts</p>";
+                                    }
+                                }
                                 ?>
                             </div>
-                            <!-- <div class="single-blog-widget mb-47">
-                                <div class="single-blog-banner">
-                                    a href="blog-details.html" id="blog"><img src="img/blog/blog-img.jpg" alt="blog"></a>
-                                    <h2>best<br> eductaion<br> theme</h2> 
+                            <div class="blog-sidebar right">
+                                <div class="single-blog-widget mb-47">
+                                    <?php 
+                                        include ("components/side_about.php");
+                                    ?>
                                 </div>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+                                
                             </div>
-                            <!-- mailchimp-alerts end -->
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
-        <!-- Subscribe End -->
-        <!-- Footer Start -->
-        <?php
-        
-		include ("components/footer.php");
-		
-		?>
-        
+            
+       
+
+<?php
+ }
+
+include("components/footer.php");
+?>

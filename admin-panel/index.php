@@ -65,36 +65,5 @@ if ($_SESSION['roles'] !== 'admin') {
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<?php require "layouts/footer.php"; ?>
 
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- Your custom script -->
-<script>
-    $(document).ready(function() {
-        $('.btn-link').click(function() {
-            var $collapse = $($(this).attr('data-target'));
-            if ($collapse.hasClass('show')) {
-                $collapse.collapse('hide');
-            } else {
-                $collapse.collapse('show');
-            }
-        });
-
-        // Hide collapse when clicked outside
-        $(document).on('click', function(event) {
-            var $target = $(event.target);
-            if (!$target.closest('.collapse').length && !$target.closest('.btn-link').length) {
-                $('.collapse').collapse('hide');
-            }
-        });
-    });
-</script>
-
-
-</body>
-</html>

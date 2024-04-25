@@ -1,5 +1,16 @@
 <?php 
 include ("components/header.php");
+
+require("admin-panel/includes/config.php");
+
+// Fetch blog posts from the database where is_published is published
+$query = 
+    $conn->
+        query("SELECT blog_posts.*, blog_categories.name AS category_name
+                       FROM blog_posts
+                       JOIN blog_categories ON blog_posts.category_id = blog_categories.id
+                       WHERE blog_posts.is_published = '1'"); 
+        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
         <!-- <section class="quote-section">
             <div class="container">
@@ -382,42 +393,46 @@ include ("components/header.php");
                             <div class="container">
                                 <div class="row">
                                     <div class="nblog-owl owl-theme owl-carousel">
+                                    <?php foreach ($posts as $post): ?>
                                         <div class="col-md-12 col-xs-12">
-
                                             <div class="single-nblog">
                                                 <div class="nblog-info">
                                                     <div class="nblog-img">
-                                                        <img src="img/blog/blog_img.png" alt="MICS_BlogImg">
+                                                    <a href="blog.php?id=<?php echo $post['id']; ?>&topic=<?php echo urlencode($post['title']); ?>">
+                                                        <img src="admin-panel/blog/asset/uploads/<?php echo $post['img'];?>" alt="MICS_BlogImg">
+                                                        </a>
                                                     </div>
                                                     <div class="nblog-content">
-                                                        <div class="date"><em class="dot">&#x2022; </em> <span>MAR 12/24</span></div>
+                                                        <div class="date"><em class="dot">&#x2022; </em> <span><?php echo date('M Y', strtotime($post['created_date'])); ?></span></div>
+                                                        <a href="blog.php?id=<?php echo $post['id']; ?>&topic=<?php echo urlencode($post['title']); ?>">
                                                         <div class="tp">
-                                                            <p>My seven-year journey at Morgan has wrought a remarkable</p>
+                                                            <h2><?php echo substr($post['title'], 0, 200); ?>...</h2>
                                                         </div>
+                                                        </a>
                                                         <img src="img/blog/icons/Line.svg" alt="">
                                                         <div class="dwn">
-                                                        <h4>article/News</h4>
-                                                        <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
+                                                        <h4><?php echo $post['category_name'];?></h4>
+                                                        <a href="blog.php?id=<?php echo $post['id']; ?>&topic=<?php echo urlencode($post['title']); ?>"><i class="fa-solid fa-arrow-right"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div> 
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
             </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
-                    </button>
+                    </button> -->
         </section>
 
         <!-- Testimial Start -->

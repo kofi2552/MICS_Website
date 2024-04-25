@@ -7,7 +7,9 @@
         exit(); // Always exit after header redirection
     }
 ?>
+
 <?php
+
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
     if ($_POST['title'] == ''  || $_POST['content'] == '' || $_POST['category_id'] == '' || !isset($_FILES['img'])) {
@@ -16,7 +18,7 @@ if (isset($_POST['submit'])) {
               </div>";
     } else {
         $title = htmlspecialchars($_POST['title']);
-        $content = $_POST['content'];
+        $content = filter_var(htmlentities($_POST["content"]), FILTER_SANITIZE_STRING);
         $category = htmlspecialchars($_POST['category_id']);
         $createdBy = $_SESSION['email']; 
         
@@ -70,77 +72,142 @@ if (isset($_POST['submit'])) {
             exit();
         }
     }
-}
-?>
-
-
-
+    }
+    ?>
 
     <style>
-        /* Additional CSS styles */
-        body {
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
+    #imageGroups .form-group{
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+    }
+
+    .url-here {
+        background: #f5f5f5;
+        padding: 4px;
+        width: 100%;
+    }
+
+    @media (max-width: 1200px) {
+        #imageGroups .form-group{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+    }
+    .url-here {
+        margin-top: 10px;
+    }
+    }
+    
     </style>
-</head>
-<body>
-<h1 class="mb-4">Add Post</h1>
-<div class="container"> 
-        <a href="../../<?php
-            if($_SESSION['roles'] == "director") {
-                echo "supa.php";
-            } elseif($_SESSION['roles'] == "admin") {
-                echo "index.php";
-            } else {
-                echo "unauthorized.php";
-            }
-        ?>" class="btn btn-primary mb-4 text-center float-right">Home</a>
 
-<?php if (isset($_GET['success']) && $_GET['success'] === 'true'): ?>
-    <div class="alert alert-success" role="alert">
-        Post added successfully!
-    </div>
-<?php endif; ?>
-<br>
-<form action="create-post.php" method="POST" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" class="form-control" required>
-    </div>
+<section class="create-post">
+        <div class="container"> 
+        <h1 class="mb-4 pt-3">Add Post</h1>
+                <a href="../../<?php
+                    if($_SESSION['roles'] == "director") {
+                        echo "supa.php";
+                    } elseif($_SESSION['roles'] == "admin") {
+                        echo "index.php";
+                    } else {
+                        echo "unauthorized.php";
+                    }
+                ?>" class="btn btn-primary mb-4 text-center float-right">Home</a>
 
-   
-    <div class="form-group">
-        <label for="content">Content:</label>
-        <textarea id="content" name="content" class="form-control" rows="6" required></textarea>
-    </div>
+        <?php if (isset($_GET['success']) && $_GET['success'] === 'true'): ?>
+            <div class="alert alert-success" role="alert">
+                Post added successfully!
+            </div>
+        <?php endif; ?>
+            <br>
+            <!-- action="create-post.php" -->
+                <form action="create-post.php"  method="POST" enctype="multipart/form-data" id="postForm">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" class="form-control" required>
+                    </div>
 
-    <div class="form-group">
-        <label for="category">Category:</label>
-        <select id="category" name="category_id" class="form-control" required>
-            <?php
-            // Fetch categories from the database
-            $stmt = $conn->query("SELECT id, name FROM blog_categories");
-            $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($categories as $category) {
-                echo "<option value='{$category['id']}'>{$category['name']}</option>";
-            }
-            ?>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="image">Image:</label>
-        <input type="file" id="img" name="img" class="form-control-file" accept="image/*" required>
-    </div>
+                
+                    <div class="form-group">
+                        <label for="content">Content:</label>
+                        <textarea id="content_snote" name="content" class="form-control" rows="6"></textarea>
+                    </div>
 
-    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-</form>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category_id" class="form-control" required>
+                            <?php
+                            // Fetch categories from the database
+                            $stmt = $conn->query("SELECT id, name FROM blog_categories");
+                            $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($categories as $category) {
+                                echo "<option value='{$category['id']}'>{$category['name']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="file" id="img" name="img" class="form-control-file" accept="image/*" required>
+                    </div>
 
-<!-- Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+                    <button type="submit" name="submit" class="btn btn-primary" id="submit-post">Submit</button>
+                </form>
+
+
+                
+                <div class="upload-images pt-5">
+                    <h1>Upload your blog images here</h1>
+                    <button type="button" id="addImageButton" class="btn btn-primary mt-2">Add an Image</button>
+                
+                    <form action="upload.php" id="uploadForm" method="POST" enctype="multipart/form-data">
+                        <div id="imageGroups" class="pt-3">
+                           
+                        </div>
+                        <button type="submit" class="btn btn-success mt-2">Upload Images</button>
+                    </form>
+                </div>
+
+</section>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageGroups = document.getElementById('imageGroups');
+            const addImageButton = document.getElementById('addImageButton');
+
+            addImageButton.addEventListener('click', function() {
+                // Check if maximum number of image groups is reached
+                if (imageGroups.children.length >= 1) {
+                    alert('Remove the current one and add new image');
+                    return;
+                }
+
+                // Create a new image group
+                const newGroup = document.createElement('div');
+                newGroup.classList.add('img-group');
+                newGroup.innerHTML = `
+                    <div class="form-group">
+                        <input type="file" name="imageFile" accept="image/*">
+                        <p class="url-here" id="imageUrl">Image URL will be displayed here after successful upload.</p>
+                        <button type="button" class="remove-image btn-warning">Remove</button>
+                        </div>
+                        <br>
+                `;
+                imageGroups.appendChild(newGroup);
+
+                // Attach event listener to remove button
+                const removeButtons = document.querySelectorAll('.remove-image');
+                removeButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        this.closest('.img-group').remove();
+                    });
+                });
+            });
+        });
+</script>
+
+<?php require "../../layouts/footer.php"; ?>
+
+

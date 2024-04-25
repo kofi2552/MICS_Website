@@ -7,6 +7,12 @@
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS `mics_db`;
+
+-- Switch to the newly created database
+USE `mics_db`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -35,7 +41,8 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `roles` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 ;
+-- ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `admins`
@@ -64,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `blog_categories` (
   `name` varchar(255) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `blog_categories`
@@ -86,17 +93,17 @@ DROP TABLE IF EXISTS `blog_posts`;
 CREATE TABLE IF NOT EXISTS `blog_posts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `img` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
   `content` text NOT NULL,
   `category_id` int NOT NULL,
   `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `is_published` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'review',
+  `is_published` TINYINT(1) NOT NULL DEFAULT 1,
   `updated_by` varchar(200) NOT NULL,
   `created_by` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `blog_posts`

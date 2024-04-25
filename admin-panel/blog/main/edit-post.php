@@ -24,7 +24,7 @@ if(isset($_GET['id'])) {
 // Update the post with new image if provided
 if(isset($_POST['submit'])) {
     $title = htmlspecialchars($_POST['title']);
-    $content = htmlspecialchars($_POST['content']);
+    $content = filter_var(htmlentities($_POST["content"]), FILTER_SANITIZE_STRING);
     $category = htmlspecialchars($_POST['category_id']);
     $status = htmlspecialchars($_POST['status']);
     $update_date = date("Y-m-d H:i:s"); // Get the current date and time
@@ -81,20 +81,17 @@ if(isset($_POST['submit'])) {
 
 <style>
     /* Custom styles */
-    .container {
-        margin-top: 50px;
-    }
+    
     .image-thumbnail {
         max-width: 200px;
         max-height: 200px;
     }
 </style>
-</head>
 
 
 <div class="container">
-    <h1 class="mb-4">Edit Post</h1>
     <div class="container"> 
+        <h1 class="mb-4 pt-3">Edit Post</h1>
         <a href="../../<?php
             if($_SESSION['roles'] == "director") {
                 echo "supa.php";
@@ -112,19 +109,29 @@ if(isset($_POST['submit'])) {
         </div>
         <div class="form-group">
             <label for="content">Content:</label>
-            <textarea id="content" name="content" class="form-control" rows="6" required><?php echo $post->content; ?></textarea>
+            <textarea id="content_snote" name="content" class="form-control" rows="6" required><?php echo nl2br(html_entity_decode($post->content)); ?></textarea>
         </div>
         <div class="form-group">
             <label for="category">Category:</label>
             <select id="category" name="category_id" class="form-control" required>
                 <?php
-                // Fetch categories from the database
-                $categoriesQuery = $conn->query("SELECT id, name FROM blog_categories");
-                $categories = $categoriesQuery->fetchAll(PDO::FETCH_OBJ);
-                foreach ($categories as $category) {
-                    $selected = ($category->id == $post->category_id) ? 'selected' : '';
-                    echo "<option value='{$category->id}' $selected>{$category->name}</option>";
-                }
+                    // Output the default option for the post's category
+                    echo "<option value='{$post->id}' selected>{$post->name}</option>";
+                
+                    // Fetch categories from the database
+                    $categoriesQuery = $conn->query("SELECT id, name FROM blog_categories");
+                    $categories = $categoriesQuery->fetchAll(PDO::FETCH_OBJ);
+                
+                    // Filter out the default category from the list of categories
+                    $filteredCategories = array_filter($categories, function($category) use ($post) {
+                        return $category->name != $post->name;
+                    });
+
+                    // Output options for all filtered categories
+                    foreach ($filteredCategories as $category) {
+                        echo "<option value='{$category->id}'>{$category->name}</option>";
+                    }
+   
                 ?>
             </select>
         </div>
@@ -147,5 +154,5 @@ if(isset($_POST['submit'])) {
     </form>
 </div>
 
-</body>
-</html>
+
+<?php require "../../layouts/footer.php"; ?>
