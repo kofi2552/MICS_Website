@@ -75,6 +75,8 @@
     $('.nblog-owl').owlCarousel({
         loop:true,
         nav:true,
+        autoplay:true,
+        autoplayTimeout: 6000,
         navText:['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
         responsive:{
             0:{

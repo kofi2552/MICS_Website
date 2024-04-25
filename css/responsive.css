@@ -809,6 +809,42 @@
   .footer-area.three .footer-bottom.two .footer-social ul {
     padding-top: 0px;
   }
+
+  .blog-card {
+    height: 100% !important;
+    flex-direction: column !important;
+  }
+
+  .blog-text-content {
+    width: 100% !important;
+    padding-bottom: 20px;
+  }
+
+  .blog-card-body {
+    width: 90% !important;
+  }
+
+  .blog-card .card-image {
+    width: 100% !important;
+    height: 200px !important;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: unset !important;
+  }
+
+  .blog-text-content .card-btm {
+    width: 100% !important;
+    /* flex-direction: column !important; */
+    gap: 20px;
+    /* align-items: flex-start; */
+  }
+  .blog-card .card-btm a {
+    margin-left: 0px !important;
+  }
+  .blog-card .content-head {
+    max-width: 400px;
+    text-overflow: ellipsis;
+  }
 }
 /* Large Mobile :480px. */
 

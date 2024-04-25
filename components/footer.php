@@ -70,7 +70,7 @@
                     </div>
                 </div>    
             </div>
-        </footer>
+</footer>
         <!-- Footer End -->
 
         <script src="js/vendor/jquery-1.12.0.min.js"></script>

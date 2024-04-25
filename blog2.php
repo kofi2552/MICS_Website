@@ -1,14 +1,7 @@
 <?php 
 
 include ("components/header.php");
-require("admin-panel/includes/config.php");
 
-// Fetch blog posts from the database where is_published is published
-$query = $conn->query("SELECT blog_posts.*, blog_categories.name AS category_name
-                       FROM blog_posts
-                       JOIN blog_categories ON blog_posts.category_id = blog_categories.id
-                       WHERE blog_posts.is_published = 'published'"); 
-$posts = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
