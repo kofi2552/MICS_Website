@@ -7,7 +7,7 @@
         $host = "localhost";
 
         //dbname
-        $dbname = "mics_db";
+        $dbname = "micsedug_mics_db";
 
         //user
         $user = "root";

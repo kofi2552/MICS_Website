@@ -8,10 +8,10 @@
 -- PHP Version: 8.0.26
 
 -- Create the database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS `mics_db`;
+CREATE DATABASE IF NOT EXISTS `micsedug_mics_db`;
 
 -- Switch to the newly created database
-USE `mics_db`;
+USE `micsedug_mics_db`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
