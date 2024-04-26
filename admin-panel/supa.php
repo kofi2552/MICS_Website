@@ -12,8 +12,12 @@ if (!isset($_SESSION['email'])) {
 
 // Check if role of logged-in user is "admin"
 if ($_SESSION['roles'] !== 'director') {
+   echo "<script> alert('Unauthorized access') </script>";
+   
+    session_unset();
+
     // Redirect to unauthorized page if role is not "admin"
-    header("Location: unauthorized.php");
+    header("Location: admins/login-admins.php");
     exit(); 
 }
 
@@ -30,7 +34,7 @@ if ($_SESSION['roles'] !== 'director') {
 
             <div id="accordion">
 
-            <div class="card">
+                <div class="card">
                     <div class="card-header" id="headingAdmin">
                         <h5 class="mb-0">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
@@ -47,8 +51,7 @@ if ($_SESSION['roles'] !== 'director') {
                                         <i class="fas fa-plus-circle mr-2"></i>Manage Admins
                                     </a>
                                 </li>
-                                
-                                
+                                                                
                             </ul>
                         </div>
                     </div>
@@ -77,20 +80,38 @@ if ($_SESSION['roles'] !== 'director') {
                                         <i class="fas fa-edit mr-2"></i>Mange blog Categories
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link" href="edit-post.php">
-                                        <i class="fas fa-edit mr-2"></i>Edit Post
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="delete-post.php">
-                                        <i class="fas fa-trash-alt mr-2"></i>Delete Post
-                                    </a>
-                                </li> -->
+                                                             
                             </ul>
                         </div>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingEvent">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseEvent" aria-expanded="true" aria-controls="collapseEvent">
+                                Events Management
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseEvent" class="collapse" aria-labelledby="headingEvent" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="event/show-events.php">
+                                        <i class="fas fa-plus-circle mr-2"></i>Manage Events
+                                    </a>
+
+                                    <a class="nav-link" href="event/show-events-year.php">
+                                        <i class="fas fa-plus-circle mr-2"></i>Events Year
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
             </div>
         </main>
     </div>

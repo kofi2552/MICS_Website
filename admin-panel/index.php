@@ -50,15 +50,37 @@ if ($_SESSION['roles'] !== 'admin') {
                                     <a class="nav-link" href="blog/blog-categories/show-categories.php">
                                         <i class="fas fa-edit mr-2"></i>Mange blog Categories
                                     </a>
-                                </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link" href="delete-post.php">
-                                        <i class="fas fa-trash-alt mr-2"></i>Delete Post
+                                </li>                              
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                    <div class="card-header" id="headingEvent">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseEvent" aria-expanded="true" aria-controls="collapseEvent">
+                                Events Management
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseEvent" class="collapse" aria-labelledby="headingEvent" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="event/show-events.php">
+                                        <i class="fas fa-plus-circle mr-2"></i>Manage Events
                                     </a>
-                                </li> --> 
+
+                                    <a class="nav-link" href="event/show-events-year.php">
+                                        <i class="fas fa-plus-circle mr-2"></i>Events Year
+                                    </a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
         </main>
