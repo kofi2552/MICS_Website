@@ -225,111 +225,64 @@ $query =
         </section>
         <!-- Courses Area End -->
         
-        <!-- Event Area Start -->
-        <section class="event-area pt-100 pb-150">
+          <!-- Event Area Start -->
+          <section class="event-area pt-100 pb-150">
             <div class="container">
                 <div class="row mb-40">
-                     <div class="col-xs-12">
+                    <div class="col-xs-12">
                         <div class="section-title text-center">
-                            <h3>UPCOMING EVENTS - 2023/2024</h3>
+                            <?php
+                            // Fetch event year from the database
+                            $query = "SELECT * FROM events_year";
+                            $result = $conn->query($query);
+                            $eventYear = $result->fetch(PDO::FETCH_ASSOC);
+                            $eventYearLabel = isset($eventYear['event_year']) ? $eventYear['event_year'] : '';
+
+                            ?>
+                            <h3>UPCOMING EVENTS - <?php echo $eventYearLabel; ?></h3>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-80">
-                    <div class="col-md-6 col-sm-12 col-xs-12 dates-left">
-                        <!-- Date item  -->
-                        <div class="single-event mb-40">
-                            <div class="event-date green">
-                                <h3>26 Feb</h3>
-                            </div>
-                            <div class="event-content">
-                                <div class="date-box">
-                                    <div class="event-content-left"><span>MON</span></div>
-                                    <div class="color-shape g"></div>
-                                </div>
-                                <div class="event-content-right"><span>2024 EOT & Mock 3 2024 EOT & Mock 3 2024 EOT & Mock 3 2024 EOT & Mock 3</span></div>
-                            </div>
-                        </div>
-                        <!-- End of Date item  -->
+                    <?php
+                    // Fetch events from the database
+                    $query = "SELECT * FROM events ORDER BY event_date asc";
+                    $result = $conn->query($query);
 
-                        <!-- Date item  -->
-                        <div class="single-event mb-40">
-                            <div class="event-date light">
-                                <h3>26 Feb</h3>
-                            </div>
-                            <div class="event-content">
-                                <div class="date-box">
-                                    <div class="event-content-left"><span>MON</span></div>
-                                    <div class="color-shape l"></div>
+                    // Check if there are any events
+                    if ($result->rowCount() > 0) {
+                        // Loop through each event
+                        foreach ($result as $event) {
+                            // Define color class based on event color
+                            $color_class = $event['event_color'] == 'green' ? 'g' : ($event['event_color'] == 'light' ? 'l' : 'o');
+                    ?>
+                            <div class="col-md-6 col-sm-12 col-xs-12 dates-right">
+                                <!-- Date item  -->
+                                <div class="single-event mb-30 ">
+                                    <div class="event-date <?php echo $event['event_color']; ?>">
+                                        <h3><?php echo date('d M', strtotime($event['event_date'])); ?></h3>
+                                    </div>
+                                    <div class="event-content">
+                                        <div class="date-box">
+                                            <div class="event-content-left"><span><?php echo date('D', strtotime($event['event_date'])); ?></span></div>
+                                            <div class="color-shape <?php echo $color_class; ?>"></div>
+                                        </div>
+                                        <div class="event-content-right"><span><?php echo $event['event_title']; ?></span></div>
+                                    </div>
                                 </div>
-                                <div class="event-content-right"><span>2024 EOT & Mock 3</span></div>
+                                <!-- End of Date item  -->
                             </div>
-                        </div>
-                        <!-- End of Date item  -->
-                        <!-- Date item  -->
-                        <div class="single-event mb-40">
-                            <div class="event-date orange">
-                                <h3>26 Feb</h3>
-                            </div>
-                            <div class="event-content">
-                                <div class="date-box">
-                                    <div class="event-content-left"><span>MON</span></div>
-                                    <div class="color-shape o"></div>
-                                </div>
-                                <div class="event-content-right"><span>2024 EOT & Mock 3</span></div>
-                            </div>
-                        </div>
-                        <!-- End of Date item  -->
-
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 dates-right">
-                        <!-- Date item  -->
-                        <div class="single-event mb-40">
-                            <div class="event-date light">
-                                <h3>26 Feb</h3>
-                            </div>
-                            <div class="event-content">
-                                <div class="date-box">
-                                    <div class="event-content-left"><span>MON</span></div>
-                                    <div class="color-shape l"></div>
-                                </div>
-                                <div class="event-content-right"><span>2024 EOT & Mock 3</span></div>
-                            </div>
-                        </div>
-                        <!-- End of Date item  -->
-                        <!-- Date item  -->
-                        <div class="single-event mb-40">
-                            <div class="event-date orange">
-                                <h3>26 Feb</h3>
-                            </div>
-                            <div class="event-content">
-                                <div class="date-box">
-                                    <div class="event-content-left"><span>MON</span></div>
-                                    <div class="color-shape o"></div>
-                                </div>
-                                <div class="event-content-right"><span>2024 EOT & Mock 3</span></div>
-                            </div>
-                        </div>
-                        <!-- End of Date item  -->
-                        <!-- Date item  -->
-                        <div class="single-event mb-40">
-                            <div class="event-date green">
-                                <h3>26 Feb</h3>
-                            </div>
-                            <div class="event-content">
-                                <div class="date-box">
-                                    <div class="event-content-left"><span>MON</span></div>
-                                    <div class="color-shape g"></div>
-                                </div>
-                                <div class="event-content-right"><span>2024 EOT & Mock 3</span></div>
-                            </div>
-                        </div>
-                        <!-- End of Date item  -->
-
-                    </div>
+                    <?php
+                        }
+                    } else {
+                       
+                        echo "<h4  class='section-title text-center'>No upcoming events found.</h4>";
+                    }
+                    ?>
                 </div>
             </div>
         </section>
+
 
         <!-- Notice Start -->
         <section class="notice-area two three">
