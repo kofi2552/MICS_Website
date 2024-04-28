@@ -1,8 +1,6 @@
 <?php 
-  session_start();
-?>
-
-<?php 
+ob_start();
+session_start();
   
   // Define APPURL constant
   define('APPURL', 'http://localhost/micsweb/admin-panel');
@@ -38,7 +36,7 @@
 <div id="wrapper">
     <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="index.php">MICS</a>
+        <a class="navbar-brand" href="/index.php">MICS</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -62,7 +60,7 @@
             </a>
             
           </li>
-          <button class="btn-success"><a class="btn-success" href=" <?php echo APPURL?>/admins/logout.php">Logout
+          <button class="btn-success"><a class="btn-success" href="/admin-panel/admins/logout.php">Logout
         </button>
         </a>
        

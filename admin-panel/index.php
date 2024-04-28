@@ -1,7 +1,7 @@
-<?php require "layouts/header.php"; ?>
-<?php require "includes/config.php"; ?>
+<?php 
+require "layouts/header.php"; 
+require "includes/config.php"; 
 
-<?php
 
 // Check if user is logged in
 if (!isset($_SESSION['email'])) {
@@ -19,7 +19,7 @@ if ($_SESSION['roles'] !== 'admin') {
 
 ?>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <!-- Main Content -->
         <main role="main" class="col-md-12 ml-sm-auto col-lg-10 px-md-4">

@@ -1,86 +1,92 @@
-<?php require "../includes/config.php"; ?>
-<?php require "../layouts/header.php"; ?>
-
-
 <?php 
+ob_start();
 
-    if(isset($_SESSION['email'])) {
-      
-      if ($_SESSION['roles'] == 'director') {
-          header("Location: ../supa.php");
-      } elseif ($_SESSION['roles'] == 'admin') {
-          header("Location: ../index.php");
-      } else {
-          // Handle other roles or redirect to a default page
-          header("Location: login-admins.php");
-      }
-      exit();
-    
-    }
+require "../includes/config.php"; 
+// require "../layouts/header.php"; 
 
 
-    if(isset($_POST['submit'])) {
-        if($_POST['email'] == '' OR $_POST['password'] == '') {
-            echo "<div class='alert alert-danger  text-center  role='alert'>
-                  enter data into the inputs
+
+session_start(); // Start or resume session
+
+
+
+
+if (isset($_POST['submit'])) {
+    if (empty($_POST['email']) || empty($_POST['password'])) {
+        echo "<div class='alert alert-danger text-center' role='alert'>
+                Enter data into the inputs
               </div>";
-        } else {
-          // validate and sanitize all input here. dont forget
-            $email = htmlspecialchars($_POST['email']);
-            $password = htmlspecialchars($_POST['password']);
+    } else {
+        // Sanitize input and prepare query
+        $email = htmlspecialchars($_POST['email']);
+        $password = htmlspecialchars($_POST['password']);
 
-            $login = $conn->query("SELECT * FROM admins WHERE email = '$email'");
+        // Query to retrieve user data based on email
+        $login = $conn->prepare("SELECT * FROM admins WHERE email = :email");
+        $login->execute(['email' => $email]);
 
-            $login->execute();
+        // Fetch user data
+        if ($row = $login->fetch(PDO::FETCH_ASSOC)) {
+            // Verify password
+            if (password_verify($password, $row['mypassword'])) {
+                // Set session variables
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['admin_id'] = $row['id'];
+                $_SESSION['roles'] = $row['roles']; // Set user role
 
-            $row = $login->FETCH(PDO::FETCH_ASSOC);
-            
-           
-
-
-            if($login->rowCount() > 0) {
-
-                if(password_verify($password, $row['mypassword'])){
-                    
-
-                    $_SESSION['email'] = $row['email'];
-                    $_SESSION['admin_id'] = $row['id'];
-                  
-                    $roles =  $_SESSION['roles']= $row['roles'];
-
-                    
-                    if($roles == 'director'){
-                      header('location: ../supa.php');
-                    }
-                    if($roles == 'admin'){
-                      header('location: ../index.php');
-                    }
-        
-                } else {
-
-                  echo "<div class='alert alert-danger  text-center text-white role='alert'>
-                            the email or password is wrong
-                        </div>";
+                // Redirect based on user role
+                if ($_SESSION['roles'] == 'director') {
+                    header("Location: ../supa.php");
+                    exit(); // Stop further script execution
+                } elseif ($_SESSION['roles'] == 'admin') {
+                    header("Location: ../index.php");
+                    exit(); // Stop further script execution
                 }
+                
+                // Debugging: Output session variables
+                // echo "<pre>";
+                // print_r($_SESSION);
+                // echo "</pre>";
 
-
+                // Redirect to supa.php upon successful login
+                header("Location: ../supa.php");
+                exit(); // Stop further script execution]
+                
             } else {
-
-              echo "<div class='alert alert-danger  text-center  role='alert'>
-                        the email or password is wrong
-                    </div>";
+                echo "<div class='alert alert-danger text-center' role='alert'>
+                        The email or password is wrong
+                      </div>";
             }
+        } else {
+            echo "<div class='alert alert-danger text-center' role='alert'>
+                    The email or password is wrong
+                  </div>";
         }
     }
+}
 
 
 
 ?>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MICS | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ 
+</head>
+
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
+        <h1>Admin CMS</h1>
         <div class="card-body">
           <h5 class="card-title mb-4 text-center">Login</h5>
           <form method="POST" action="login-admins.php">
@@ -112,10 +118,10 @@
     </div>
   </div>
 </div>
-<script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-</script>
+ <script>
+//     if ( window.history.replaceState ) {
+//         window.history.replaceState( null, null, window.location.href );
+//     }
+ </script>
 
 <?php require "../layouts/footer.php"; ?>

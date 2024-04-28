@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 require "../includes/config.php";
 require "../layouts/header.php"; 
 

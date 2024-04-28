@@ -1,7 +1,7 @@
-<?php require "../../layouts/header.php"; ?>
-<?php require "../../includes/config.php"; ?>
-
-<?php
+<?php 
+ob_start();
+require "../../layouts/header.php"; 
+require "../../includes/config.php"; 
 
 
 if(!isset($_SESSION['email'])) {
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])) {
     $title = htmlspecialchars($_POST['title']);
     $content = filter_var(htmlentities($_POST["content"]), FILTER_SANITIZE_STRING);
     $category = htmlspecialchars($_POST['category_id']);
-    $status = htmlspecialchars($_POST['status']);
+    $status = 1;
     $update_date = date("Y-m-d H:i:s"); // Get the current date and time
     $updated_by = $_SESSION['email']; // Get the user ID of the current user
 
@@ -135,13 +135,7 @@ if(isset($_POST['submit'])) {
                 ?>
             </select>
         </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select id="status" name="status" class="form-control">
-                <option value="review" <?php echo ($post->status == 'review') ? 'selected' : ''; ?>>Review</option>
-                <option value="published" <?php echo ($post->status == 'published') ? 'selected' : ''; ?>>Published</option>
-            </select>
-        </div>
+        
         <div class="form-group">
             <label for="image">Current Image:</label><br>
             <img src="../asset/uploads/<?php echo $post->img; ?>" alt="Post Image" class="image-thumbnail">

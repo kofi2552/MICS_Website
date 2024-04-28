@@ -1,0 +1,115 @@
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* background: url(../img/popup.png); */
+  background-size: cover;
+  background-position: center center;
+  transform: translate(-50%, -50%) scale(1) !important;
+  background-color: #dda53c;
+  padding: 5px;
+  z-index: 99;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: rgba(90, 114, 102, 0.5) 0px 7px 29px 0px;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Styling for the popup content */
+.popup-content {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.popup-content p {
+  font-size: 20px;
+  color: #09470e !important;
+}
+
+.popup-content p em {
+  font-weight: 600;
+}
+
+/* Styling for the "Apply Now" link */
+.apply-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: #d49b31;
+  color: white;
+  text-decoration: none;
+}
+
+.apply-link:hover {
+  color: white;
+  background-color: #206633;
+}
+
+.popup a {
+  color: white !important;
+}
+
+/* CSS keyframes for fadeInUp animation */
+/* @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+} */
+
+/* CSS keyframes for fadeOutDown animation */
+/* @keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+} */
+
+.course-slides {
+  width: 100%;
+  height: 300px;
+}
+
+.course-owl {
+  width: 100%;
+  height: 300px;
+}
+
+.course-owl .owl-stage {
+  width: 100%;
+}
+/* .course-owl {
+  width: 100%;
+} */
+
+.course-slides .col-md-12 {
+  padding: 0 !important;
+}
+
+.course-slides .item {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+
+.course-slides .course-slideimg {
+  width: 100%;
+  height: 300px;
+}
+
+.course-slides .course-slideimg img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

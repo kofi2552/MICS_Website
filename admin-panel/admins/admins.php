@@ -1,15 +1,14 @@
-<?php require "../layouts/header.php"; ?>
-<?php require "../includes/config.php"; ?>
-
-<?php  
+<?php 
+ob_start();
+require "../layouts/header.php"; 
+require "../includes/config.php";
 
 
     if(!isset($_SESSION['email'])) {
       header("location: login-admins.php");
     }
     
-
-
+    
     $admins = $conn->query(
         "SELECT * 
          FROM admins 

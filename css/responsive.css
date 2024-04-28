@@ -99,15 +99,15 @@
   .section-title h2 {
     font-size: 26px;
   }
-  .main-menu nav > ul > li > a {
+  /* .main-menu nav > ul > li > a {
     line-height: 100px;
-  }
+  } */
   /* .logo {
     padding: 25px 0 23px;
   } */
-  .header-area.two .main-menu nav > ul > li > a {
+  /* .header-area.two .main-menu nav > ul > li > a {
     line-height: 122px;
-  }
+  } */
   .search {
     top: 77px;
   }
@@ -189,7 +189,7 @@
 @media (min-width: 768px) and (max-width: 991px) {
   .main-menu nav > ul > li > a {
     font-size: 12px;
-    line-height: 80px;
+    line-height: 70px;
     padding: 0 8px;
   }
   /* .logo {
@@ -258,7 +258,7 @@
   }
   .header-area.two .main-menu nav > ul > li > a {
     font-size: 13px;
-    line-height: 111px;
+    line-height: 70px;
   }
   .blog-sidebar.right {
     margin-left: 0;
@@ -456,6 +456,27 @@
   /* .mean-container a.meanmenu-reveal {
     margin-top: -62px;
   } */
+
+  .welcome-section-area .welcome-content {
+    flex-direction: column;
+  }
+
+  .welcome-section-area .welcome-content .box {
+    width: 100%;
+  }
+
+  .welcome-section-area .welcome-content .wlc-qte {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .courses-area .courses-container {
+    padding: 20px;
+  }
+
+  .courses-area .course-cards {
+    padding: 20px 30px;
+  }
 
   .event-area .section-title h3 {
     padding-top: 0 !important;
@@ -935,6 +956,20 @@
   }
   .single-widget.instagram {
     padding-right: 70px;
+  }
+  .welcome-section-area .welcome-content {
+    width: 100%;
+    max-width: 500px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+
+  .welcome-section-area .welcome-content .box {
+    width: 100%;
+  }
+  .welcome-section-area .welcome-content .wlc-qte {
+    max-width: 100%;
+    padding: 20px;
   }
 }
 

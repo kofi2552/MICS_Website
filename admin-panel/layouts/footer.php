@@ -5,12 +5,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script src="../main/main.js"></script>
+<script src="../blog/main/main.js"></script>
 
 
 
 <!-- Your custom script -->
-<!-- <script>
+<script>
     $(document).ready(function() {
         $('.btn-link').click(function() {
             var $collapse = $($(this).attr('data-target'));
@@ -31,7 +31,7 @@
             }
         });
     });
-</script> -->
+</script>
 
 <p class="text-center p-10">2024 MICS Website</p>
 

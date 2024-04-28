@@ -1,7 +1,9 @@
-<?php require "layouts/header.php"; ?>
-<?php require "includes/config.php"; ?>
+<?php 
+ob_start();
+require "layouts/header.php"; 
+require "includes/config.php";
 
-<?php
+
 
 // Check if user is logged in
 if (!isset($_SESSION['email'])) {
@@ -23,12 +25,12 @@ if ($_SESSION['roles'] !== 'director') {
 
 ?>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <!-- Main Content -->
         <main role="main" class="col-md-12 ml-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Admin Dashboard</h1>
+                <h1 class="h2">Super Admin Dashboard</h1>
                 
             </div>
 

@@ -26,6 +26,7 @@
 
 
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style2.css">
 
 
 
@@ -82,7 +83,7 @@
 					<div class="row">
 						<div class="col-md-3 col-sm-3 col-xs-6 top-nav">
 							<div class="logo">
-								<a href="index.php"><img src="img/mics_web_log.png" alt="MICS-logo"/></a>
+								<a href="index.php"><img src="img/mics_footer-logo.svg" alt="MICS-logo" width="30%"/></a>
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-6 top-nav">
@@ -121,6 +122,7 @@
                                             </li>
                                             <li><a href="" style="text-decoration: none;">Community</a>
                                             <ul>
+                                                <li><a href="#" style="text-decoration: none;">Alumni</a> </li>
                                                 <li><a href="founder.php" style="text-decoration: none;">Founder Message</a></li>
                                                 <!--li><a href="students.php">Students</a></li-->
                                                 <li><a href="staff.php" style="text-decoration: none;">Staff</a></li>
@@ -135,6 +137,7 @@
                                             </li>
 
                                             <li><a href="blog-posts.php" style="text-decoration: none;">Blog</a> </li>
+                                            
 
                                             <li><a href="" style="text-decoration: none;">About Us</a>
                                                 <ul>
@@ -149,7 +152,7 @@
 
                                             <li class="hidden-sm"><a href="contact.php" style="text-decoration: none;">Contact Us</a> </li>
                                             
-                                            <!--<li class="hidden-sm"><a href="donate.php" style="text-decoration: none;">Donate</a> </li>-->
+                                            <li class="act-btn"><a href="#" style="text-decoration: none;">Apply Now</a> </li>
 
                                                 
                                     </nav>

@@ -1143,6 +1143,14 @@ textarea {
 /*  2. Header CSS
 /*----------------------------------------*/
 
+/********** text green  - #09470e ***************************/
+/********** background green  - #206633 ***************************/
+/********** background gold  - #aa7f2d ***************************/
+
+.container {
+  max-width: 1240px !important;
+}
+
 .main-header {
   width: 100%;
 }
@@ -1150,19 +1158,22 @@ textarea {
 .header-area {
   height: 70px;
   /* background: #292929; */
-  /* background: #05ac85; */
-  background: #fff;
-  color: #292929 !important;
+  background: #206633;
+  /* background: #fff; */
+  color: #fff !important;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .main-header .header-area .logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   height: 70px;
   margin: auto 0;
 }
 
 .main-header .header-area .logo img {
-  width: 120px;
+  width: 45%;
   object-position: center;
   line-height: 70px;
   object-fit: contain;
@@ -1174,8 +1185,8 @@ textarea {
 }
 
 .header-area .content-wrapper ul li a {
-  line-height: 70px !important;
-  color: #292929 !important;
+  line-height: 70px;
+  color: #fff !important;
 }
 
 .header-area .content-wrapper ul li ul li a {
@@ -1377,6 +1388,15 @@ textarea {
   -webkit-transition: all 0.6s ease 0s;
   -o-transition: all 0.6s ease 0s;
   transition: all 0.6s ease 0s;
+}
+
+.main-menu nav .act-btn a {
+  display: inline-block;
+  background-color: #d49b31;
+  color: white;
+  text-decoration: none;
+  line-height: 50px !important;
+  padding-right: 15px !important;
 }
 
 /* .header-area.two .mean-container a.meanmenu-reveal {
@@ -1651,7 +1671,7 @@ textarea {
 .header-top {
   width: 100%;
   height: 35px;
-  background: #05ac85;
+  background: #eaf9f6;
   position: relative;
 }
 
@@ -1665,13 +1685,17 @@ textarea {
 .header-top .header-top-right a {
   /* height: 35px !important; */
   line-height: 35px !important;
-  color: #fff !important;
+  color: #000 !important;
 }
 
 .header-top .header-top-left p {
   font-size: 15px;
   line-height: 35px !important;
-  color: #fff !important;
+  color: #000 !important;
+}
+
+.header-top .header-top-left p i {
+  color: #000 !important;
 }
 
 /* .header-top:after {
@@ -2393,9 +2417,15 @@ textarea {
   max-width: 900px;
   margin: 0 auto;
   display: flex;
-  align-items: flex-start;
-  gap: 30px;
+  align-items: center;
+  /* gap: 30px; */
+  justify-content: space-between;
   margin-bottom: 10px;
+  background: #f5f5f5;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 
 /* #intoview {
@@ -2405,8 +2435,63 @@ textarea {
 } */
 
 .welcome-section-area .welcome-content .wlc-qte {
+  width: 100%;
+  max-width: 900px;
   text-align: left;
   padding: 0 20px;
+}
+
+.welcome-section-area .welcome-content .wlc-qte h3 {
+  font-size: 25px;
+}
+
+.welcome-section-area .welcome-content .box {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #dda53c;
+  position: relative;
+}
+
+.welcome-section-area .welcome-content .box .text-anime h1 {
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 0px;
+  color: #fff;
+  font-size: 100px;
+  font-weight: 800;
+}
+
+.welcome-section-area .welcome-content .box .text-anime {
+  width: 300px;
+  height: 40px;
+  /* background: #006c31; */
+  position: absolute;
+  margin: auto;
+  /* height: 80pt; */
+  top: 0;
+  bottom: 0;
+  line-height: 1;
+  padding-top: 15px;
+}
+
+/* .welcome-section-area .welcome-content .box h1 {
+  color: #fff;
+  font-size: 100px;
+  position: relative;
+} */
+
+.welcome-section-area .welcome-content .box h1 span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  margin-right: 20px !important;
+  margin-top: 20px;
+  font-weight: 700;
 }
 
 .welcome-section-area .welcome-content h3 {
@@ -2420,7 +2505,7 @@ textarea {
   color: #34393a;
   font-size: 16px;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.5;
   font-family: "Open Sans", sans-serif;
   text-transform: capitalize;
   margin-bottom: 20px;
@@ -2437,26 +2522,96 @@ textarea {
 
 .courses-area {
   position: relative;
-  background: url(../img/course-bg.png);
+  /* background: url(../img/course-bg.png); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
+  overflow: hidden;
 }
 
 .courses-area {
-  background-color: #f6fff9;
-  padding-top: 240px;
+  padding-top: 140px;
   padding-bottom: 120px;
 }
 
-.courses-area .row {
-  padding: 20px 0 !important;
+.courses-area .container {
+  background: #536a5d;
+  padding: 0 !important;
+}
+
+/* .courses-area .row {
+  padding-bottom: 20px !important;
+} */
+
+.courses-area .courses-container {
+  padding: 20px 40px;
+}
+
+.courses-area .course-cards {
+  width: 100%;
+  background: #fff;
+  padding: 40px 50px;
+  margin-bottom: 20px;
+}
+
+.course-cards .ibdp {
+  background-color: #fafafa;
+}
+.course-cards .ckpt {
+  background-color: #edf4f2;
+}
+.course-cards .igcse {
+  background-color: #e5ece8;
+}
+.course-cards .nat {
+  background-color: #d2ded8;
+}
+
+.course-content-desc {
+  width: 100%;
+  padding: 15px;
+  height: 100%;
+}
+/* .course-content-desc a{
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100%;
+} */
+
+.course-content-desc h2 {
+  font-size: 40px;
+  color: #d49b31;
+  font-weight: 300;
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.course-content-desc p {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 300;
+  text-align: left;
+  padding-right: 30px;
+  margin-top: 10px;
+}
+
+.course-content-desc p em {
+  font-weight: 600;
+}
+
+.courses-area .courses-container .no-gutters [class^="col-"] {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 .course-section-title h3 {
   font-size: 40px;
-  color: #2b2d2d;
+  color: #fff;
   font-weight: 700;
   font-family: "Open Sans", sans-serif;
   text-transform: uppercase;
@@ -2464,12 +2619,13 @@ textarea {
 }
 
 .course-section-title p {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: 400;
   text-align: left;
   padding-right: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
+  color: #fff;
 }
 
 .section-title > img {
@@ -2506,21 +2662,11 @@ textarea {
   color: #fff;
 }
 
-.course-img img {
-  width: 90%;
-  max-width: 416px;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
 .course-img {
   position: relative;
   width: 100%;
-  max-width: 416px;
-  height: 330px;
-  /* background-color: #6ec9a4; */
-  border-radius: 10px;
+  height: 270px;
+  /* background-color: #f3efd8; */
 }
 
 .course-img a {
@@ -2528,7 +2674,6 @@ textarea {
   line-height: 0;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
 }
 
 .course-img a:after {
@@ -2536,7 +2681,7 @@ textarea {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -2547,12 +2692,16 @@ textarea {
   -webkit-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .single-course {
   position: relative;
   overflow: hidden;
+}
+
+.single-course a {
+  text-decoration: none !important;
 }
 
 .course-hover,
@@ -2574,9 +2723,9 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
   height: 100%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .course-hover .cover img {
@@ -2586,7 +2735,7 @@ textarea {
 
 .course-hover h3 {
   color: #fff;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
   font-weight: 300;
 }
@@ -2604,7 +2753,7 @@ textarea {
 }
 
 .course-img a:hover::after {
-  opacity: 80%;
+  opacity: 100%;
 }
 
 .course-img:hover .course-hover {
@@ -2613,7 +2762,7 @@ textarea {
 
 .courses-area.two {
   position: relative;
-  background: url(../img/course-bg.png);
+  /* background: url(../img/course-bg.png); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -2753,9 +2902,14 @@ textarea {
 .course-details-content p.margin {
   margin-bottom: 15px;
 }
+
 /*----------------------------------------*/
 /*  7. Event CSS
 /*----------------------------------------*/
+.event-area {
+  background-color: #f6fff9;
+}
+
 .event-area .section-title h3 {
   font-size: 40px;
   color: #2b2d2d;
@@ -2776,18 +2930,19 @@ textarea {
 
 .single-event {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   /* height: 80px; */
-  border-radius: 6px;
-  border: 1px solid #cccccc;
+  /* border-radius: 6px; */
+  border: 1px solid #dcdcdc;
   display: flex;
   align-items: center;
-  box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.02);
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; */
 }
 
 /*---- colors--------*/
 .green {
-  background: #009959;
+  background: #206633;
 }
 .orange {
   background: #eaa83d;
@@ -2796,26 +2951,26 @@ textarea {
   background: #c3ba6d;
 }
 
-.event-area .event-content {
+/* .event-area .event-content {
   height: 100px;
-}
+} */
 
 .event-date {
   width: 100%;
-  max-width: 140px;
+  max-width: 150px;
   -webkit-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  height: 100px;
+  /* border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px; */
+  /* height: 100px; */
 }
 
 .event-date h3 {
   color: #fefefe;
   font-size: 30px;
   font-weight: 700;
-  line-height: 100px;
+  line-height: 80px;
   text-transform: uppercase;
   text-align: center;
   text-overflow: ellipsis;
@@ -2900,7 +3055,7 @@ textarea {
 } */
 
 .single-event:hover .event-date {
-  background: #07624d;
+  background: #009959;
 }
 
 /* ----------------------------------------------- */
@@ -3135,7 +3290,7 @@ textarea {
 /*  8. Testimonial CSS
 /*----------------------------------------*/
 .testimonial-area {
-  background: #0ab28b;
+  background: #e8cc87;
   /* background-attachment: fixed; */
   position: relative;
 }
@@ -3228,7 +3383,8 @@ textarea {
 }
 
 .nblog-area .nblog-content img {
-  width: 100%;
+  object-fit: cover;
+  width: 100% !important;
 }
 
 .carousel .section-title h3 {
@@ -3237,7 +3393,7 @@ textarea {
   font-weight: 700;
   font-family: "Open Sans", sans-serif;
   text-transform: uppercase;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .nblog-img {
@@ -3254,6 +3410,7 @@ textarea {
 }
 
 .nblog-content {
+  width: 100%;
   position: relative;
   padding: 0 10px;
   display: flex;
@@ -3335,8 +3492,8 @@ textarea {
 }
 .nblog-content .dwn a {
   padding: 5px 15px;
-  background: linear-gradient(135deg, #13de82 0%, #0ab68b 100%);
-  border-radius: 12px;
+  background: #449d5b;
+  border-radius: 3px;
   color: #fff !important;
 }
 
@@ -3351,12 +3508,12 @@ textarea {
 
 .nblog-content .date {
   float: left;
-  background: #cdf2e9;
-  width: 70px;
+  background: #e3fff9;
+  width: 60px;
   min-height: 17px;
   line-height: 17px;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 2px;
   display: flex;
   align-items: center !important;
   justify-content: center;
@@ -4121,7 +4278,8 @@ textarea {
 /*  12. Footer CSS
 /*----------------------------------------*/
 .footer-area {
-  background-color: #313131;
+  background-color: #206633;
+  /* background-color: #313131; */
 }
 .main-footer {
   padding-bottom: 40px;
@@ -4144,7 +4302,7 @@ textarea {
   position: relative;
 }
 .single-widget h3::after {
-  background: #606060 none repeat scroll 0 0;
+  background: #d49b31 none repeat scroll 0 0;
   bottom: -10px;
   content: "";
   height: 1px;
@@ -4153,7 +4311,7 @@ textarea {
   width: 57px;
 }
 .single-widget h3::before {
-  background: #606060 none repeat scroll 0 0;
+  background: #d49b31 none repeat scroll 0 0;
   bottom: -13px;
   content: "";
   height: 1px;

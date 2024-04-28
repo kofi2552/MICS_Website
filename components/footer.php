@@ -39,6 +39,7 @@
                                     <li><a href="Parent Student Handbook.pdf" target="_blank" style="text-decoration: none;">Parent Handbook</a></li>
                                     <li><a href="mission.php" style="text-decoration: none;">Mission & Vision</a></li>
                                     <li><a href="placement.php" style="text-decoration: none;">University Placement</a></li>
+                                    <li><a target="new" href="/admin-panel/admins/login-admins.php" style="text-decoration: none;">Dashboard</a></li>
                                 </ul>
                             </div>
                         </div>

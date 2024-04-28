@@ -1,5 +1,4 @@
 <?php 
-
 include ("components/header.php");
 
 require("admin-panel/includes/config.php");

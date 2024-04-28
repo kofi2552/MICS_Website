@@ -1,14 +1,14 @@
-<?php require "../../layouts/header.php"; ?>
-<?php require "../../includes/config.php"; ?>
-
 <?php 
+ob_start();
+require "../../layouts/header.php"; 
+ require "../../includes/config.php"; 
+
+
     if(!isset($_SESSION['email'])) {
         header("location: ../../admins/login-admins.php");
         exit(); // Always exit after header redirection
     }
-?>
 
-<?php
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
         }
     }
     }
-    ?>
+?>
 
     <style>
     #imageGroups .form-group{
@@ -209,5 +209,7 @@ if (isset($_POST['submit'])) {
 </script>
 
 <?php require "../../layouts/footer.php"; ?>
+
+
 
 

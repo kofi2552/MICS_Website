@@ -1,4 +1,6 @@
 <?php 
+ob_start();
+
 include ("components/header.php");
 
 require("admin-panel/includes/config.php");
@@ -12,6 +14,18 @@ $query =
                        WHERE blog_posts.is_published = '1'"); 
         $posts = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+            <div class="popup-container" id="popup-container">
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <h2 class="text-center">ADMISSIONS ARE OPEN</h2>
+                    <p><em>Dear Prospective Applicant,</em><br>
+                    Thank you for considering MICS GH.<br>
+                    We are delighted to announce the admissions for ________ academic year.</p>
+                        <a href="#" class="apply-link" id="applyNow">Please click here</a>
+                    </div>
+                </div>
+            </div>
         <!-- <section class="quote-section">
             <div class="container">
                 <div class="row">
@@ -43,10 +57,9 @@ $query =
                             </div>
                         </div>
                     </div>
-                    <!-- Start Slider Content -->
                 </div> 
                 <!-- Start Slingle Slide -->
-                <div class="single-slide item" style="background-image: url(img/slider/slider1.png)">
+                <div class="single-slide item" style="background-image: url(img/slider/slider2.png)">
                     <!-- Start Slider Content -->
                     <div class="slider-content-area">  
                         <div class="container">
@@ -66,7 +79,7 @@ $query =
                     <!-- Start Slider Content -->
                 </div>
                 <!-- Start Slingle Slide -->
-                <div class="single-slide item" style="background-image: url(img/slider/slider2.png)">
+                <div class="single-slide item" style="background-image: url(img/slider/slider3.png)">
                     <!-- Start Slider Content -->
                     <div class="slider-content-area">  
                         <div class="container">
@@ -85,61 +98,43 @@ $query =
                     </div>
                     <!-- Start Slider Content -->
                 </div>
-                <!-- End Slingle Slide -->
-                <!-- Start Slingle Slide -->
-                <div class="single-slide item" style="background-image: url(img/slider/slide2.png)">
-                    <div class="slider-content-area">   
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-7 col-md-offset-left-5"> 
-                                    <div class="slide-content-wrapper text-left">
-                                        <div class="slide-content">
-                                            <h3>We Grow The Creative</h3>
-                                            <p>They are: instructional, facilitation, project-based learning, individual learning, group learning, peer learning, student led learning.</p>
-                                            <a class="default-btn" href="founder.php">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                <!-- End Slingle Slide -->
-                <!-- Start Slingle Slide -->
-              <div class="single-slide item" style="background-image: url(img/slider/slide3.png)">
-                    <div class="slider-content-area">  
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-7 col-md-offset-left-5"> 
-                                    <div class="slide-content-wrapper">
-                                        <div class="slide-content">
-                                            <h3>All round development</h3>
-                                            <p>Experience the vibrant blend of cultures with African students, fostering a global community of understanding and respect.</p>
-                                            <a class="default-btn" href="about.html">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                <!-- End Slingle Slide -->								
+                <!-- End Slingle Slide -->						
             </div>
             <a href="#intoview" id="scrollbtn">
             <img class="arrw-down" src="img/arrw_dwn.svg" alt="mics"/>
             </a>
         </section>
         <div></div>
-        <section id="welcome-area" class="welcome-section-area pt-120 pb-120">
+        <section id="welcome-area" class="welcome-section-area pt-80 pb-120">
             <div class="container">
                 <div class="row">
                     <!-- <div class="programs-logo" id="programs-logo">
                     <img src="img/programs.svg" alt="MICS programs offered"/>
                     </div> -->
                     <div class="welcome-content" >
-                            <img src="img/mark.svg" alt="MICS_icon">
+                        <div class="box">
+                            <!-- <img src="img/mark.svg" alt="MICS_icon"> -->
+                            <!-- <h1><span>MICS</span>5</h1> -->
+                            <div class="text-anime">
+                                <h1 id="text1"></h1>
+                                <h1 id="text2"></h1>
+                            </div>
+                            <svg id="filters">
+                                <defs>
+                                    <filter id="threshold">
+                                        <!-- Basically just a threshold effect - pixels with a high enough opacity are set to full opacity, and all other pixels are set to completely transparent. -->
+                                        <feColorMatrix in="SourceGraphic"
+                                                type="matrix"
+                                                values="1 0 0 0 0
+                                                                0 1 0 0 0
+                                                                0 0 1 0 0
+                                                                0 0 0 255 -140" />
+                                    </filter>
+                                </defs>
+                            </svg>
+                        </div>
                         <div class="wlc-qte">
-                            <!-- <h3>Why MICS<h3> -->
+                            <h3>Why MICS<h3>
                             <p>Empowering futures globally with excellence in education. We have programs and initiatives that continue to give value to our students and enduring outcomes for all who come under our tutelage.</p>
                         </div>
                     </div>
@@ -151,74 +146,138 @@ $query =
         <!-- Courses Area Start -->
         <section class="courses-area text-center" id="intoview">
             <div class="container">
-                <div class="row mb-25">
-                    <div class="col-md-8 col-sm-6 col-xs-12">
-                        <div class="course-section-title">
-                            <h3>Diverse Programs</h3>
-                            <p>Explore a world of possibilities with Morgan International Community School's diverse academic programs. From the rigorous Cambridge IGCSE & Lower Secondary curriculum, designed to ignite curiosity and critical thinking, to our esteemed IB Diploma program, empowering students for success in a globalized world. Additionally, we offer tailored WASSCE and BECE programs, nurturing each student's potential and preparing them for future challenges.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="single-course">
-                            <div class="course-img">
-                                <a href="course-details.html"><img loading="lazy" src="img/course/img1.jpeg" alt="course" style="text-decoration: none;">
-                                    <div class="course-hover">
-                                        <div class="cover">
-                                        <h3>IBDP</h3>
-                                        <img src="img/link.svg" alt="mics_course_link">
-                                        </div>
-                                    </div>
-                                </a>
+                <div class="row">
+                    <div class="course-slides">
+                        <div class="carousel-inner">
+                           
+                            <div class="course-owl owl-theme owl-carousel">
+                                <div class="single-course-img"> 
+                                            <div class="col-md-12 col-sm-12"> 
+                                                <div class="course-slideimg">
+                                                    <img src="img/course/slide/img4.png" alt="">
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="single-course-img"> 
+                                            <div class="col-md-12 col-sm-12"> 
+                                                <div class="course-slideimg">
+                                                    <img src="img/course/slide/img3.png" alt="">
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="single-course-img"> 
+                                            <div class="col-md-12 col-sm-12"> 
+                                                <div class="course-slideimg">
+                                                    <img src="img/course/slide/img1.png" alt="">
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="single-course-img"> 
+                                            <div class="col-md-12 col-sm-12"> 
+                                                <div class="course-slideimg">
+                                                    <img src="img/course/slide/img2.png" alt="">
+                                                </div>
+                                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-25">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="courses-container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
                         <div class="single-course">
-                            <div class="course-img">
-                                <a href="course-details.html"><img loading="lazy" src="img/course/img2.jpeg" alt="course">
-                                    <div class="course-hover">
-                                        <div class="cover">
-                                        <h3>CHECKPOINT</h3>
-                                        <img src="img/link.svg" alt="mics_course_link">
-                                        </div>
-                                    </div>
-                                </a>
+                            <div class="course-section-title">
+                                <h3>Diverse Programs</h3>
+                                <p>Explore Morgan International Community School's diverse academic programs.
+                                </p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-cards">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 col-sm-6 col-xs-12 ibdp">
+                            <div class="single-course">
+                                <div class="course-img">
+                                    <a href="course-details.html">
+                                        <!-- <img loading="lazy" src="img/course/img1.jpeg" alt="course"> -->
+                                        <div class="course-content-desc">
+                                            <h2>IBDP</h2>
+                                            <p>The International Baccalaureate (IB) Diploma Programme is a challenging <em>two-year curriculum</em>, primarily aimed at students aged 16 to 19.</p>
+                                        </div>
+                                        <div class="course-hover">
+                                            <div class="cover">
+                                            <h3>IBDP</h3>
+                                            <img src="img/link.svg" alt="mics_course_link">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 ckpt">
+                            <div class="single-course">
+                                <div class="course-img">
+                                    <a href="course-details.html">
+                                        <!-- <img loading="lazy" src="img/course/img2.jpeg" alt="course"> -->
+                                        <div class="course-content-desc">
+                                            <h2>IGCSE</h2>
+                                            <p>MICS offers the Cambridge <em>Lower Secondary</em> which is typically for learners aged 11 to 14 years and the Cambridge <em>Upper Secondary</em> for learners aged 14 to 16 years.</p>
+                                        </div>
+                                        <div class="course-hover">
+                                            <div class="cover">
+                                            <h3>IGCSE</h3>
+                                            <img src="img/link.svg" alt="mics_course_link">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 igcse">
+                            <div class="single-course">
+                                <div class="course-img">
+                                    <a href="course-details.html" style="text-decoration: none;">
+                                    <!-- <img loading="lazy" src="img/course/img3.jpeg" alt="course"> -->
+                                    <div class="course-content-desc">
+                                            <h2>CHECKPOINT</h2>
+                                            <p>With students as young as four and nine years old, one gets the feel of a <em>family learning center</em> here on campus. Our curriculum is practical which gives learners a hands-on feel of the real world.</p>
+                                        </div>
+                                        <div class="course-hover">
+                                            <div class="cover">
+                                            <h3>CHECKPOINT</h3>
+                                            <img src="img/link.svg" alt="mics_course_link">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                            </div>
+                        </div>
                         
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="single-course">
-                            <div class="course-img">
-                                <a href="course-details.html" style="text-decoration: none;"><img loading="lazy" src="img/course/img3.jpeg" alt="course">
-                                    <div class="course-hover">
-                                        <div class="cover">
-                                        <h3>IGCSE</h3>
-                                        <img src="img/link.svg" alt="mics_course_link">
+                        <div class="col-md-3 col-sm-6 col-xs-12 nat">
+                            <div class="single-course">
+                                <div class="course-img">
+                                    <a href="course-details.html">
+                                        <!-- <img loading="lazy" src="img/course/img4.jpeg" alt="course"> -->
+                                        <div class="course-content-desc">
+                                            <h2>NATIONAL</h2>
+                                            <p>MICS offers an enriched National Curriculum;Primary, Basic Education Certificate Examination <em>(B.E.C.E)</em>, and West Africa Secondary School Certificates Examination <em>(WASSCE)</em></p>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                          
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="single-course">
-                            <div class="course-img">
-                                <a href="course-details.html"><img loading="lazy" src="img/course/img4.jpeg" alt="course">
-                                    <div class="course-hover">
-                                        <div class="cover">
-                                        <h3>NATIONAL</h3>
-                                        <img src="img/link.svg" alt="mics_course_link">
+                                        <div class="course-hover">
+                                            <div class="cover">
+                                            <h3>NATIONAL</h3>
+                                            <img src="img/link.svg" alt="mics_course_link">
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -333,9 +392,9 @@ $query =
                 <div class="container">
                     <div class="row mb-40">
                         <div class="col-xs-12">
-                            <div class="section-title text-center">
+                            <div class="section-title mb-20">
                                 <h3>LATEST NEWS</h3>
-                                <p>In this heartfelt message, our Head of School for National warmly welcomes you to Morgan International School. As she shares our commitment to excellence, character, and community, we invite you to join us on a journey of growth and success. Together, let's create a vibrant learning community where every student thrives.</p>
+                                <p>Stay updated with the latest happenings and announcements.</p>
                             </div>
                         </div>
                     </div>
@@ -359,7 +418,11 @@ $query =
                                                         <div class="date"><em class="dot">&#x2022; </em> <span><?php echo date('M Y', strtotime($post['created_date'])); ?></span></div>
                                                         <a href="blog.php?id=<?php echo $post['id']; ?>&topic=<?php echo urlencode($post['title']); ?>">
                                                         <div class="tp">
-                                                            <h2><?php echo substr($post['title'], 0, 200); ?>...</h2>
+                                                            <?php 
+                                                            $title = substr($post['title'], 0, 200);
+                                                            $formattedTitle = ucfirst(strtolower($title));
+                                                            ?>
+                                                            <h2><?php echo $formattedTitle;?>...</h2>
                                                         </div>
                                                         </a>
                                                         <img src="img/blog/icons/Line.svg" alt="">
@@ -378,26 +441,20 @@ $query =
                         </div>
                     </div>
             </div>
-                    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button> -->
+                   
         </section>
 
         <!-- Testimial Start -->
         <section id="carouselExample testimonial" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <div class="testimonial-area pt-110 pb-105 text-center">
+                    <div class="testimonial-area pt-110 pb-105 text-center">
                         <div class="container">
                             <div class="row">
                                 <div class="testimonial-owl owl-theme owl-carousel">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-12">
-                                        <div class="single-testimonial">
+
+                                    <div class="single-testimonial">
+                                        <div class="col-md-12 col-sm-12">
                                             <div class="testimonial-info">
                                                 <div class="testimonial-img">
                                                     <img loading="lazy" src="img/Testimonials/cris.jpg" alt="MICS_testimonials">
@@ -410,18 +467,9 @@ $query =
                                             </div>
                                         </div>
                                     </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                <div class="testimonial-area pt-110 pb-105 text-center">
-                        <div class="container">
-                            <div class="row">
-                                <div class="testimonial-owl owl-theme owl-carousel">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-12">
-                                        <div class="single-testimonial">
+
+                                    <div class="single-testimonial">
+                                        <div class="col-md-12 col-sm-12">
                                             <div class="testimonial-info">
                                                 <div class="testimonial-img">
                                                     <img src="img/testimonial/mar.jpg" alt="testimonial" style="height:77px;">
@@ -434,30 +482,7 @@ $query =
                                             </div>
                                         </div>
                                     </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                <div class="testimonial-area pt-110 pb-105 text-center">
-                        <div class="container">
-                            <div class="row">
-                                <div class="testimonial-owl owl-theme owl-carousel">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-12">
-                                        <div class="single-testimonial">
-                                            <div class="testimonial-info">
-                                                <div class="testimonial-img">
-                                                    <img src="img/testimonial/3.jpg" alt="testimonial">
-                                                </div>
-                                                <div class="testimonial-content">
-                                                    <p>Being an IBDP student of MICS has truly transformed me into a team player and a more thoughtful person. The IBDP program requires a lot of group discussions and presentations, both in teaching and learning. I have learnt to not only depend on myself but to collaborate with my classmates, in order to constructively benefit from the knowledge of others.</p>
-                                                    <h4>Papa Kwasi Amoo Otoo</h4>
-                                                    <h5>IBDP</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
+
                                 </div>
                             </div>
                         </div>

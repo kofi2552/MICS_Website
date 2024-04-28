@@ -1,7 +1,8 @@
-<?php require "../layouts/header.php"; ?>
-<?php require "../includes/config.php"; ?>
+<?php 
+ob_start();
+require "../layouts/header.php"; 
+require "../includes/config.php"; 
 
-<?php
 
 if (!isset($_SESSION['email'])) {
     header("location: ../admins/login-admins.php");

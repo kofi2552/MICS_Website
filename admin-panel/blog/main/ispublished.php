@@ -2,10 +2,10 @@
 // Include your database configuration file
  require "../../includes/config.php";
 
- if(!isset($_SESSION['email'])) {
-    header("location: ../../admins/login-admins.php");
-    exit(); 
-}
+//  if(!isset($_SESSION['email'])) {
+//     header("location: ../../admins/login-admins.php");
+//     exit(); 
+// }
 
 // Function to toggle the ispublished field for a post
 function togglePublished($post_id) {
